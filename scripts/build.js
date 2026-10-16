@@ -1,107 +1,61 @@
 // Builds the site into site/: index.html, the PDF and resume.json.
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { pathToFileURL } from 'node:url'
-import { build } from 'esbuild'
 import { pdf, render } from 'resumed'
+import * as theme from 'jsonresume-theme-even'
 
 const OUT = 'site'
-const THEME_FILE = '.theme/index.js'
-
-// The theme's date formatter turns a year-only date ("2018") into "Jan 2018" and
-// prints "2017 - 2017" for a same-year range. Patch it to print just the year.
-let datesPatched = false
-const yearOnlyDates = {
-  name: 'year-only-dates',
-  setup(b) {
-    b.onLoad({ filter: /@jsonresume[\\/]utils[\\/]src[\\/]dates\.js$/ }, ({ path }) => {
-      datesPatched = true
-      return {
-        loader: 'jsx',
-        contents: patch(readFileSync(path, 'utf8'), [
-          ['    const isDateOnlyIso =', "    if (typeof dateStr === 'string' && /^\\d{4}$/.test(dateStr)) return dateStr;\n    const isDateOnlyIso ="],
-          ['  return `${start} - ${end}`;', '  return start === end ? start : `${start} - ${end}`;'],
-        ]),
-      }
-    })
-  },
-}
-
-// The brutalist theme ships as JSX source, so bundle it into plain ESM first.
-// styled-components must be bundled from its ESM build, or styled.div is undefined.
-await build({
-  entryPoints: ['node_modules/jsonresume-theme-brutalist/index.jsx'],
-  bundle: true,
-  platform: 'node',
-  format: 'esm',
-  jsx: 'automatic',
-  loader: { '.js': 'jsx' },
-  mainFields: ['module', 'main'],
-  external: ['react', 'react-dom'],
-  banner: { js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" },
-  plugins: [yearOnlyDates],
-  outfile: THEME_FILE,
-  logLevel: 'warning',
-})
-if (!datesPatched) throw new Error('Theme no longer loads @jsonresume/utils/src/dates.js; update the date patch')
-const theme = await import(pathToFileURL(THEME_FILE).href)
 
 const resume = JSON.parse(readFileSync('resume.json', 'utf8'))
-const { name, email } = resume.basics
-const pdfName = `${name.replace(/\s+/g, '-')}-CV.pdf`
+const pdfName = `${resume.basics.name.replace(/\s+/g, '-')}-CV.pdf`
 
-// The theme shows "Present" only for an explicit null endDate, which the schema
-// rejects, so current jobs (no endDate in resume.json) are marked here instead.
-const forTheme = { ...resume, work: resume.work?.map((job) => ({ endDate: null, ...job })) }
-
-// The theme keeps each whole section on one page when printing, which leaves most
-// of page 1 empty. Let sections flow across pages but keep each entry together.
-const printCss = '<style>@media print{.resume-section{break-inside:auto!important;page-break-inside:auto!important}.resume-section>div{break-inside:avoid;page-break-inside:avoid}}</style>'
-const html = (await render(forTheme, theme)).replace('</head>', `${printCss}</head>`)
+// Keep each role, project and skill group on one page, and headings with what follows.
+const printCss = '<style>@media print{.timeline>div,.stack>article>header,#education article,#projects article,.grid-list>div{break-inside:avoid}h3,h4,h5,article>header{break-after:avoid}}</style>'
+const html = fixDates(await render(resume, theme)).replace('</head>', `${printCss}</head>`)
 
 mkdirSync(OUT, { recursive: true })
-writeFileSync(`${OUT}/index.html`, addToolbar(html))
+writeFileSync(`${OUT}/index.html`, addActions(html))
 copyFileSync('resume.json', `${OUT}/resume.json`)
 
 if (process.env.SKIP_PDF) {
   console.log('Skipped PDF (SKIP_PDF is set)')
 } else {
-  // A4 for Thailand; printBackground keeps the theme's yellow and black blocks.
-  const pdfRenderOptions = { format: 'A4', printBackground: true, scale: 0.85, margin: { top: '10mm', bottom: '10mm' } }
-  const pdfTheme = { ...theme, pdfRenderOptions }
-  writeFileSync(`${OUT}/${pdfName}`, await pdf(html, forTheme, pdfTheme))
+  const pdfRenderOptions = { format: 'A4', printBackground: true, margin: { top: '12mm', bottom: '12mm' } }
+  writeFileSync(`${OUT}/${pdfName}`, await pdf(html, resume, { ...theme, pdfRenderOptions }))
 }
 console.log(`Built ${OUT}/`)
 
-// Web-only extras: a download/contact bar above the header and a credits footer.
-// Both are hidden when printing, so the PDF matches the theme exactly.
-function addToolbar(page) {
-  const css = `<style>
-.toolbar,.credits{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:1px}
-.toolbar{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px;padding:12px 16px;border-top:4px solid #0a0a0a;border-bottom:2px solid #0a0a0a}
-.toolbar a{padding:8px 14px;border:2px solid #0a0a0a;background:#0a0a0a;color:#fff;font-size:13px;font-weight:700;text-decoration:none;box-shadow:4px 4px 0 #ffe600}
-.toolbar a:hover,.toolbar a:focus-visible{background:#ffe600;color:#0a0a0a;box-shadow:4px 4px 0 #0a0a0a;outline:none}
-.credits{padding:16px;border-top:2px solid #0a0a0a;border-bottom:4px solid #0a0a0a;font-size:11px}
-.credits a{color:#0a0a0a}
-@media print{.toolbar,.credits{display:none}}
-</style>`
-  const links = [
-    `<a href="${pdfName}" download>Download PDF</a>`,
-    '<a href="resume.json" target="_blank" rel="noopener">JSON Resume</a>',
-    email && `<a href="mailto:${email}">Email me</a>`,
-  ]
-  const toolbar = `<nav class="toolbar" aria-label="Actions">${links.filter(Boolean).join('')}</nav>`
-  const credits = '<footer class="credits">Made with <a href="https://jsonresume.org">JSON Resume</a> and <a href="https://github.com/rbardini/resumed">resumed</a></footer>'
-
+function fixDates(page) {
   return page
-    .replace('</head>', `${css}</head>`)
-    .replace('<header', `${toolbar}<header`)
-    .replace('</main>', `</main>${credits}`)
+    // The theme shows a year-only date ("2018") as "Jan 2018"; show just the year.
+    .replace(/<time datetime="(\d{4})">[^<]*<\/time>/g, '<time datetime="$1">$1</time>')
+    // <time-duration> adds up every start/end pair it gets. That double-counts
+    // overlapping projects at one company, so give it a single first-start to
+    // last-end span. Drop it when a date is year-only, since the months would be a guess.
+    .replace(/<time-duration dates="([^"]*)"><\/time-duration>/g, (tag, dates) => {
+      const parts = dates.split('|')
+      const starts = parts.filter((_, i) => i % 2 === 0).filter(Boolean)
+      const ends = parts.filter((_, i) => i % 2 === 1)
+      if (!starts.length || parts.some((d) => /^\d{4}$/.test(d))) return ''
+      const ongoing = ends.some((d) => !d)
+      const span = [starts.sort()[0], ongoing ? '' : ends.sort().at(-1)]
+      return `<time-duration dates="${span.join('|')}"></time-duration>`
+    })
 }
 
-function patch(source, replacements) {
-  for (const [from, to] of replacements) {
-    if (!source.includes(from)) throw new Error(`Theme date patch is out of date: "${from}" not found`)
-    source = source.replace(from, () => to)
-  }
-  return source
+// Web-only download links under the contact list, hidden when printing.
+function addActions(page) {
+  const css = `<style>
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:1.5rem}
+@media (min-width:48em){.actions{justify-content:flex-start}}
+.actions a{padding:.4rem .9rem;border:1px solid var(--color-accent);border-radius:999px;color:var(--color-accent);font-size:.875rem;text-decoration:none}
+.actions a:hover,.actions a:focus-visible{background:var(--color-accent);color:var(--color-background)}
+@media print{.actions{display:none}}
+</style>`
+  const actions = `<div class="actions"><a href="${pdfName}" download>Download PDF</a><a href="resume.json" target="_blank" rel="noopener">JSON Resume</a></div>`
+
+  const list = page.indexOf('<ul class="icon-list">')
+  const listEnd = page.indexOf('</ul>', list)
+  if (list === -1 || listEnd === -1) throw new Error('Could not find the contact list to add the download links after')
+  const at = listEnd + '</ul>'.length
+  return page.slice(0, at).replace('</head>', `${css}</head>`) + actions + page.slice(at)
 }

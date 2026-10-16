@@ -2,14 +2,20 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Sorawich Chankhiew",
-    "label": "Software Developer",
+    "label": "Backend Software Engineer",
     "email": "sorawichchankhiew@gmail.com",
-    "summary": "Software engineer with 6 years of experience since graduating: 2 years in web development and 4 years in backend development. I have built advertising systems, healthcare systems, a website for a food delivery brand, a funds transfer platform and a cryptocurrency brokerage.",
+    "url": "https://sorawich-ch.github.io",
+    "summary": "Backend-focused software engineer building production systems since 2018. I design APIs, databases and third-party integrations for fintech, healthcare and advertising products, from Visa card transfers and a cryptocurrency brokerage to a health app that syncs data from wearable devices. I also work across the stack with React and React Native, and ship services with Docker and Kubernetes.",
     "location": {
       "city": "Bangkok",
       "countryCode": "TH"
     },
     "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "sorawich-chankhiew",
+        "url": "https://www.linkedin.com/in/sorawich-chankhiew-bb8682179/"
+      },
       {
         "network": "GitHub",
         "username": "sorawich-ch",
@@ -20,86 +26,85 @@
   "work": [
     {
       "name": "MAQE Bangkok Co., Ltd.",
-      "position": "VISA Funds Transfer",
-      "location": "Bangkok",
+      "position": "Visa Funds Transfer",
       "startDate": "2023-02",
-      "summary": "An international money transfer platform that wanted to let its customers send money to a recipient's Visa credit card.",
+      "summary": "Extended an international money transfer service so customers can send money directly to a recipient's Visa credit card.",
       "highlights": [
-        "Developed and implemented the client API that serves the front end, enabling smooth communication between the user interface and the back-end systems.",
-        "Connected the Visa API to enable secure credit/debit money transfers, ensuring reliable and efficient financial transactions."
+        "Built the client-facing API that connects the front end to the back-end transfer services.",
+        "Integrated the Visa API to process secure credit and debit card transfers reliably."
       ]
     },
     {
       "name": "MAQE Bangkok Co., Ltd.",
-      "position": "Internal POC / Research",
-      "location": "Bangkok",
+      "position": "Internal R&D and Proofs of Concept",
       "startDate": "2022-09",
       "highlights": [
-        "Conducted internal proofs of concept and research into new technologies and solutions, providing insights and recommendations for the organization.",
-        "Developed new solutions and estimated the resources and timelines needed to deliver projects.",
-        "Passed the Odoo certification exams, demonstrating proficiency in the platform."
+        "Built proofs of concept to evaluate new technologies and recommended which ones to adopt.",
+        "Scoped new solutions and estimated the resources and timelines needed to deliver them.",
+        "Passed the Odoo certification exams."
       ]
     },
     {
       "name": "MAQE Bangkok Co., Ltd.",
-      "position": "Web Portal for Industrial Gas Consumption",
-      "location": "Bangkok",
+      "position": "Industrial Gas Consumption Portal",
       "startDate": "2022-10",
       "endDate": "2022-11",
-      "summary": "A dashboard portal where a client monitors its customers' gas consumption across sources (pipeline, tank, gas generator). Client staff sign in with Microsoft Azure and customers with email; access is controlled by role and permission.",
+      "summary": "A dashboard where a gas supplier and its customers track consumption from pipelines, tanks and gas generators. Staff sign in with Microsoft Azure, customers with email, and roles control what each user can see.",
       "highlights": [
-        "Implemented the APIs that serve the front end, ensuring seamless integration between the front-end and back-end systems.",
-        "Improved and optimized the codebase for performance and maintainability."
+        "Built the APIs that power the dashboard.",
+        "Refactored and optimized the codebase for performance and maintainability."
       ]
     },
     {
       "name": "MAQE Bangkok Co., Ltd.",
       "position": "Cryptocurrency Brokerage Platform",
-      "location": "Bangkok",
       "startDate": "2022-06",
       "endDate": "2022-10",
-      "summary": "A brokerage system that lets investors trade cryptocurrencies, integrating the Coinbase exchange, Fireblocks wallets and a payment gateway across web and mobile.",
+      "summary": "A web and mobile platform for trading cryptocurrencies, integrated with the Coinbase exchange, Fireblocks wallets and a payment gateway.",
       "highlights": [
-        "Developed, debugged and improved the core API, back-office features and crypto data feeds."
+        "Developed and debugged the core API and back-office features.",
+        "Improved the crypto data feeds, adding functionality and optimizing performance."
       ]
     },
     {
       "name": "Qualint",
+      "description": "Health tech",
+      "position": "LyfeTrack Health Platform",
       "startDate": "2020-07",
       "endDate": "2022-05",
-      "summary": "Health tech: the LyfeTrack application.",
+      "summary": "A health platform with a mobile app, an admin dashboard and integrations with wearable devices.",
       "highlights": [
-        "Designed and developed backend services and APIs (Python FastAPI, Docker).",
-        "Designed and developed the database (PostgreSQL).",
-        "Developed a web admin dashboard for the health applications (React).",
-        "Developed a health app for Android and iOS (React Native).",
-        "Worked with AWS (S3, Textract).",
-        "Worked with wearable-device microservices and transformed their data to fit the application's requirements (Garmin, Fitbit, Oura).",
-        "Owned proofs of concept for new features requested by the business."
+        "Designed and built the backend services and APIs with Python, FastAPI and Docker.",
+        "Designed the PostgreSQL database.",
+        "Built the web admin dashboard in React and the Android and iOS app in React Native.",
+        "Integrated data from Garmin, Fitbit and Oura wearables and transformed it to fit the app's data model.",
+        "Used AWS S3 for file storage and Amazon Textract to extract text from documents.",
+        "Built proofs of concept for new features requested by the business."
       ]
     },
     {
       "name": "HotNow Co., Ltd.",
+      "position": "Campaign and Deal Management Systems",
       "startDate": "2018",
       "endDate": "2020-07",
-      "summary": "Campaign management system, deal management system, the HotNow app and a game application.",
+      "summary": "Campaign management and deal management systems, the HotNow app and a game app.",
       "highlights": [
-        "Designed, developed and optimized web applications, including styles, layouts and responsive views for different devices and screen sizes, in a Linux-based environment under the direction of a senior programmer.",
-        "Developed back-end applications with Python and SQL.",
-        "Deployed services with Docker and Kubernetes, and worked with JavaScript, Elm, Python and SQL."
+        "Built and optimized responsive web applications, owning page styles, layouts and views for different devices and screen sizes, under the guidance of a senior engineer.",
+        "Developed back-end services with Python and SQL.",
+        "Deployed services with Docker and Kubernetes.",
+        "Worked with JavaScript, Elm, Python and SQL."
       ]
     },
     {
       "name": "CAMT UAV and Autonomous Lab",
+      "description": "Research lab",
+      "position": "Air Quality Monitoring Drone",
       "startDate": "2017",
       "endDate": "2017",
-      "summary": "Research lab.",
       "highlights": [
-        "Developed an Arduino device to check air quality.",
-        "Modified a drone to carry the air-quality hardware.",
-        "Developed a web dashboard to display air quality (Laravel).",
-        "Designed and developed the database (MySQL).",
-        "Designed and developed backend services and APIs."
+        "Built an Arduino sensor that measures air quality and integrated it into a modified drone.",
+        "Built a Laravel web dashboard that displays the air-quality readings.",
+        "Designed the MySQL database and the backend APIs."
       ]
     }
   ],
@@ -115,19 +120,23 @@
   "skills": [
     {
       "name": "Languages",
-      "keywords": ["Python", "JavaScript", "Elixir", "Elm", "HTML", "CSS / SCSS"]
+      "keywords": ["Python", "JavaScript", "Elixir", "Elm", "SQL", "HTML", "CSS / SCSS"]
     },
     {
-      "name": "Frameworks",
-      "keywords": ["React", "React Native", "Node.js", "Fastify", "FastAPI", "Phoenix", "Bootstrap", "Tailwind"]
+      "name": "Backend",
+      "keywords": ["FastAPI", "Node.js", "Fastify", "Phoenix", "REST APIs"]
     },
     {
-      "name": "Databases",
-      "keywords": ["PostgreSQL", "MySQL"]
+      "name": "Frontend and mobile",
+      "keywords": ["React", "React Native", "Tailwind", "Bootstrap"]
+    },
+    {
+      "name": "Data",
+      "keywords": ["PostgreSQL", "MySQL", "Kafka"]
     },
     {
       "name": "Infrastructure and tools",
-      "keywords": ["Docker", "Kubernetes", "Kafka", "AWS", "Git", "Linux", "macOS"]
+      "keywords": ["Docker", "Kubernetes", "AWS", "Git", "Linux", "macOS"]
     }
   ],
   "projects": [
@@ -135,31 +144,31 @@
       "name": "Web-based Game",
       "entity": "Opxerve Co., Ltd.",
       "highlights": [
-        "Designed and developed backend services and APIs (Python FastAPI, Docker).",
-        "Worked with a message queue (Kafka).",
+        "Designed and built backend services and APIs with Python, FastAPI and Docker.",
         "Owned the affiliate microservices.",
-        "Load-tested and optimized services (Locust)."
+        "Worked with Kafka for messaging between services.",
+        "Load-tested the services with Locust and optimized their performance."
       ]
     },
     {
       "name": "MK Woodtech Web Application",
-      "description": "Developed the MK Woodtech web application.",
+      "description": "Built the MK Woodtech web application.",
       "keywords": ["JavaScript", "React"]
     },
     {
       "name": "GrabFood Merchant Website",
       "url": "https://grabmerchantth.com",
-      "description": "Developed the GrabFood merchant static website.",
+      "description": "Built the static website for GrabFood merchants in Thailand.",
       "keywords": ["Squarespace"]
     },
     {
-      "name": "Suitcube Web Applications",
+      "name": "Suitcube Online Tailor",
       "url": "https://onlinetailor.suitcube.com",
-      "description": "Developed Suitcube's web applications."
+      "description": "Built web applications for Suitcube's online tailoring service."
     },
     {
       "name": "ERP Polymers Website",
-      "description": "Developed the ERP Polymers static website.",
+      "description": "Built the ERP Polymers company website.",
       "keywords": ["Jekyll", "SCSS"]
     }
   ],
