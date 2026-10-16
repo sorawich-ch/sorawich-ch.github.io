@@ -74,7 +74,6 @@
       "highlights": [
         "Built and maintain a shared set of 18 Claude Code skills used by 7 teammates, covering unit tests, API specs from source code, QA test cases from a diff and a pre-QA self-review. The unit-test skill cuts the time to write unit tests by about 80%.",
         "Ran AI training for the team.",
-        "Led AI and development for a CJ hackathon project on AI agents across the SDLC, which received the highest score at the event.",
         "Built a team knowledge hub with separate lanes for developers, PM/BA and QA. Its generator catalogs 715 endpoints across 21 services with their permissions, so non-developers can explore the system without reading code.",
         "Updated the PDF report code in 7 services using a shared report skill.",
         "Gave knowledge sessions on bitmasks, worker pools and a new error-handling pattern."
@@ -190,11 +189,11 @@
     },
     {
       "name": "Cloud and DevOps",
-      "keywords": ["Docker", "Kubernetes", "Helm", "Istio", "GitLab CI", "HashiCorp Vault", "GKE", "Huawei Cloud", "AWS", "Git", "Linux"]
+      "keywords": ["Docker", "Kubernetes", "Helm", "Istio", "GitLab CI", "HashiCorp Vault", "GKE", "Huawei Cloud", "AWS", "Caddy", "Git", "Linux"]
     },
     {
       "name": "Observability and quality",
-      "keywords": ["OpenTelemetry", "testify", "gomock", "xUnit", "golangci-lint", "SonarQube"]
+      "keywords": ["OpenTelemetry", "testify", "gomock", "xUnit", "pytest", "Playwright", "golangci-lint", "ruff", "SonarQube"]
     },
     {
       "name": "AI tooling",
@@ -206,6 +205,33 @@
     }
   ],
   "projects": [
+    {
+      "name": "BanFontHub",
+      "url": "https://banfonthub.com",
+      "type": "Freelance client project",
+      "startDate": "2026-07",
+      "description": "An online store for Thai handwriting fonts, built end to end for a client. Customers try fonts in a live preview, pay by PromptPay QR and get their files by email once an admin approves the payment slip.",
+      "highlights": [
+        "Built the Go (Echo) API on MongoDB and the Next.js storefront and admin, deployed on AWS with font files kept in a private S3 bucket.",
+        "Built a live font preview with adjustable size and side-by-side weights, lazy-loading font files so the catalog stays fast.",
+        "Automated delivery: approving an order sends a branded email with expiring per-file download links and a one-click ZIP of the whole order.",
+        "Added a sales dashboard, bundle promotions and an affiliate program with paid membership tiers and commissions."
+      ],
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "React", "TypeScript", "Tailwind", "AWS S3", "Docker"]
+    },
+    {
+      "name": "Scheduled Web Automation Service",
+      "type": "Personal project",
+      "startDate": "2026-06",
+      "description": "Scheduled browser automation that completes a recurring multi-step web-form workflow for several users on a third-party, SSO-protected web app with no public API. Running unattended in production since June 2026.",
+      "highlights": [
+        "All code written by Claude Code under a human-in-the-loop process I designed: a hook blocks edits until I approve the plan, every change passes a pytest and ruff gate and a reviewer sub-agent, and every bug fix ships with a regression test.",
+        "Built recovery on typed errors (one re-login for an expired session, a fallback engine for a changed page) and a rule never to retry after the final submit, so a failure is flagged as unconfirmed instead of risking a duplicate record.",
+        "Encrypted credentials and session cookies at rest, and protected the admin dashboard with CSRF tokens, rate limiting and a security test matrix covering every endpoint for every role.",
+        "Cut compute cost by about 87% (≈$24 to ≈$8 a month) by running EC2 only during the daily working windows, and wrote 180+ offline tests plus end-to-end tests in real Chromium against a local fake of the target app."
+      ],
+      "keywords": ["Python", "Playwright", "FastAPI", "Pydantic", "Docker Compose", "Caddy", "AWS EC2", "EventBridge", "pytest", "Claude Code"]
+    },
     {
       "name": "Web-based Game",
       "entity": "Opxerve Co., Ltd.",
@@ -234,6 +260,14 @@
       "name": "ERP Polymers Website",
       "description": "Built the ERP Polymers company website.",
       "keywords": ["Jekyll", "SCSS"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "CJ Hackathon: Highest Score",
+      "awarder": "CJ MORE",
+      "date": "2026",
+      "summary": "Led the AI and development work on a project that put AI agents across the software development lifecycle, including requirements and development agents, a live office view and scheduling. It received the highest score at the event."
     }
   ],
   "certificates": [
