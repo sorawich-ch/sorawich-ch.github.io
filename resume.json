@@ -279,10 +279,10 @@
   ],
   "awards": [
     {
-      "title": "CJ Hackathon: Highest Score",
+      "title": "CJ AI-Native SDLC Hackathon: Highest Score (89/100)",
       "awarder": "CJ MORE",
-      "date": "2026",
-      "summary": "Led the AI and development work on a project that put AI agents across the software development lifecycle, including requirements and development agents, a live office view and scheduling. It received the highest score at the event."
+      "date": "2026-06",
+      "summary": "Led AI and development for CJ AI Passport, built by our team in 4 days: an AI-native order-to-cash system (quotations, sales orders, delivery notes and tracking) where AI drafts orders and a person approves them. We built it with a Claude Code setup of 20 skills, 4 sub-agents and a custom MCP server, covering all 8 SDLC phases. It scored 89/100, the highest at the event."
     }
   ],
   "certificates": [
