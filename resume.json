@@ -197,8 +197,8 @@
       "keywords": ["Claude Code", "Agent skills", "Sub-agents", "MCP"]
     },
     {
-      "name": "Frontend and mobile",
-      "keywords": ["React", "Next.js", "React Native", "HTML", "CSS / SCSS", "Tailwind", "Bootstrap"]
+      "name": "Frontend",
+      "keywords": ["React", "Next.js", "HTML", "CSS / SCSS", "Tailwind", "Bootstrap"]
     }
   ],
   "projects": [
