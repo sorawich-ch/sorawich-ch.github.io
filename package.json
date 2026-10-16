@@ -1,0 +1,18 @@
+{
+  "name": "sorawich-ch-resume",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "resumed validate resume.json",
+    "build": "node scripts/build.js",
+    "preview": "SKIP_PDF=1 node scripts/build.js && open site/index.html"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "jsonresume-theme-brutalist": "^0.2.5",
+    "puppeteer": "^24.43.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "resumed": "^6.1.0"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Sorawich Chankhiew",
+    "label": "Software Developer",
+    "email": "sorawichchankhiew@gmail.com",
+    "summary": "Software engineer with 6 years of experience since graduating: 2 years in web development and 4 years in backend development. I have built advertising systems, healthcare systems, a website for a food delivery brand, a funds transfer platform and a cryptocurrency brokerage.",
+    "location": {
+      "city": "Bangkok",
+      "countryCode": "TH"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "sorawich-ch",
+        "url": "https://github.com/sorawich-ch"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "VISA Funds Transfer",
+      "location": "Bangkok",
+      "startDate": "2023-02",
+      "summary": "An international money transfer platform that wanted to let its customers send money to a recipient's Visa credit card.",
+      "highlights": [
+        "Developed and implemented the client API that serves the front end, enabling smooth communication between the user interface and the back-end systems.",
+        "Connected the Visa API to enable secure credit/debit money transfers, ensuring reliable and efficient financial transactions."
+      ]
+    },
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "Internal POC / Research",
+      "location": "Bangkok",
+      "startDate": "2022-09",
+      "highlights": [
+        "Conducted internal proofs of concept and research into new technologies and solutions, providing insights and recommendations for the organization.",
+        "Developed new solutions and estimated the resources and timelines needed to deliver projects.",
+        "Passed the Odoo certification exams, demonstrating proficiency in the platform."
+      ]
+    },
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "Web Portal for Industrial Gas Consumption",
+      "location": "Bangkok",
+      "startDate": "2022-10",
+      "endDate": "2022-11",
+      "summary": "A dashboard portal where a client monitors its customers' gas consumption across sources (pipeline, tank, gas generator). Client staff sign in with Microsoft Azure and customers with email; access is controlled by role and permission.",
+      "highlights": [
+        "Implemented the APIs that serve the front end, ensuring seamless integration between the front-end and back-end systems.",
+        "Improved and optimized the codebase for performance and maintainability."
+      ]
+    },
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "Cryptocurrency Brokerage Platform",
+      "location": "Bangkok",
+      "startDate": "2022-06",
+      "endDate": "2022-10",
+      "summary": "A brokerage system that lets investors trade cryptocurrencies, integrating the Coinbase exchange, Fireblocks wallets and a payment gateway across web and mobile.",
+      "highlights": [
+        "Developed, debugged and improved the core API, back-office features and crypto data feeds."
+      ]
+    },
+    {
+      "name": "Qualint",
+      "startDate": "2020-07",
+      "endDate": "2022-05",
+      "summary": "Health tech: the LyfeTrack application.",
+      "highlights": [
+        "Designed and developed backend services and APIs (Python FastAPI, Docker).",
+        "Designed and developed the database (PostgreSQL).",
+        "Developed a web admin dashboard for the health applications (React).",
+        "Developed a health app for Android and iOS (React Native).",
+        "Worked with AWS (S3, Textract).",
+        "Worked with wearable-device microservices and transformed their data to fit the application's requirements (Garmin, Fitbit, Oura).",
+        "Owned proofs of concept for new features requested by the business."
+      ]
+    },
+    {
+      "name": "HotNow Co., Ltd.",
+      "startDate": "2018",
+      "endDate": "2020-07",
+      "summary": "Campaign management system, deal management system, the HotNow app and a game application.",
+      "highlights": [
+        "Designed, developed and optimized web applications, including styles, layouts and responsive views for different devices and screen sizes, in a Linux-based environment under the direction of a senior programmer.",
+        "Developed back-end applications with Python and SQL.",
+        "Deployed services with Docker and Kubernetes, and worked with JavaScript, Elm, Python and SQL."
+      ]
+    },
+    {
+      "name": "CAMT UAV and Autonomous Lab",
+      "startDate": "2017",
+      "endDate": "2017",
+      "summary": "Research lab.",
+      "highlights": [
+        "Developed an Arduino device to check air quality.",
+        "Modified a drone to carry the air-quality hardware.",
+        "Developed a web dashboard to display air quality (Laravel).",
+        "Designed and developed the database (MySQL).",
+        "Designed and developed backend services and APIs."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Chiang Mai University",
+      "studyType": "Bachelor of Science",
+      "area": "Software Engineering",
+      "startDate": "2014",
+      "endDate": "2017"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "keywords": ["Python", "JavaScript", "Elixir", "Elm", "HTML", "CSS / SCSS"]
+    },
+    {
+      "name": "Frameworks",
+      "keywords": ["React", "React Native", "Node.js", "Fastify", "FastAPI", "Phoenix", "Bootstrap", "Tailwind"]
+    },
+    {
+      "name": "Databases",
+      "keywords": ["PostgreSQL", "MySQL"]
+    },
+    {
+      "name": "Infrastructure and tools",
+      "keywords": ["Docker", "Kubernetes", "Kafka", "AWS", "Git", "Linux", "macOS"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Web-based Game",
+      "entity": "Opxerve Co., Ltd.",
+      "highlights": [
+        "Designed and developed backend services and APIs (Python FastAPI, Docker).",
+        "Worked with a message queue (Kafka).",
+        "Owned the affiliate microservices.",
+        "Load-tested and optimized services (Locust)."
+      ]
+    },
+    {
+      "name": "MK Woodtech Web Application",
+      "description": "Developed the MK Woodtech web application.",
+      "keywords": ["JavaScript", "React"]
+    },
+    {
+      "name": "GrabFood Merchant Website",
+      "url": "https://grabmerchantth.com",
+      "description": "Developed the GrabFood merchant static website.",
+      "keywords": ["Squarespace"]
+    },
+    {
+      "name": "Suitcube Web Applications",
+      "url": "https://onlinetailor.suitcube.com",
+      "description": "Developed Suitcube's web applications."
+    },
+    {
+      "name": "ERP Polymers Website",
+      "description": "Developed the ERP Polymers static website.",
+      "keywords": ["Jekyll", "SCSS"]
+    }
+  ],
+  "languages": [
+    { "language": "Thai" },
+    { "language": "English" }
+  ]
+}
