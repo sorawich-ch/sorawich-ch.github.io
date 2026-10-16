@@ -2,10 +2,10 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Sorawich Chankhiew",
-    "label": "Backend Software Engineer",
+    "label": "Software Engineer",
     "email": "sorawichchankhiew@gmail.com",
     "url": "https://sorawich-ch.github.io",
-    "summary": "Backend software engineer building production systems since 2018, now mainly in Go (Golang) with MongoDB, Kafka and Kubernetes. At CJ MORE I work on the POS back-office platform used by stores, distribution centers and head office, and lead three projects: a new asset-tracking service, the in-store print service running in about 1,500 branches, and the team's adoption of AI-assisted development. I also build Go and Next.js products as a freelancer, and my team's AI-native project received the highest score at the CJ hackathon. Earlier I built fintech, healthcare and advertising products with Python, Node.js and React.",
+    "summary": "Software engineer building production systems since 2018, across backend and frontend: Go (Golang), MongoDB, Kafka and Kubernetes on the backend, and React and Next.js on the frontend. At CJ MORE I work on the POS back-office platform used by stores, distribution centers and head office, and lead three projects: a new asset-tracking service, the in-store print service running in about 1,500 branches, and the team's adoption of AI-assisted development. I also build Go and Next.js products as a freelancer, and my team's AI-native project received the highest score at the CJ hackathon. Earlier I built fintech, healthcare and advertising products with Python, Node.js and React.",
     "location": {
       "city": "Bangkok",
       "countryCode": "TH"
