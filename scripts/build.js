@@ -57,7 +57,7 @@ const printCss = `<style>
   #work .stack>article+article{padding-top:1em}
 }
 </style>`
-const html = fixDates(await render(resume, theme)).replace('</head>', `${layoutCss}${printCss}</head>`)
+const html = addAwardKeywords(fixDates(await render(resume, theme))).replace('</head>', `${layoutCss}${printCss}</head>`)
 
 mkdirSync(OUT, { recursive: true })
 writeFileSync(`${OUT}/index.html`, addActions(html))
@@ -95,6 +95,20 @@ function fixDates(page) {
       const span = [first, ongoing ? '' : nextMonth(ends.sort().at(-1))]
       return `<time-duration dates="${span.join('|')}"></time-duration>`
     })
+}
+
+// The theme shows no tech tags on awards, so add an award's keywords (an extra
+// field in resume.json) as a tag list styled like the project tags.
+function addAwardKeywords(page) {
+  for (const { title, keywords } of resume.awards ?? []) {
+    if (!keywords?.length) continue
+    const start = page.indexOf(`<h4>${title}</h4>`)
+    const end = page.indexOf('</article>', start)
+    if (start === -1 || end === -1) throw new Error(`Could not find the award "${title}" to add its keywords`)
+    const tags = `<ul class="tag-list">${keywords.map((k) => `<li>${k}</li>`).join('')}</ul>`
+    page = page.slice(0, end) + tags + page.slice(end)
+  }
+  return page
 }
 
 function nextMonth(date) {

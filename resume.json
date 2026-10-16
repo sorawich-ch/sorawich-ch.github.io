@@ -259,7 +259,8 @@
       "title": "CJ AI-Native SDLC Hackathon: Highest Score (89/100)",
       "awarder": "CJ MORE",
       "date": "2026-06",
-      "summary": "Led AI and development for CJ AI Passport, an AI-native order-to-cash system (quotations, sales orders, delivery notes and tracking) where AI drafts orders and a person approves them. Our team built it in 4 days with a Claude Code setup of 20 skills, 4 sub-agents and a custom MCP server, covering all 8 SDLC phases."
+      "summary": "Led AI and development for CJ AI Passport, an AI-native order-to-cash system (quotations, sales orders, delivery notes and tracking) where AI drafts orders and a person approves them. I built the team's AI-first starter, a Go (Echo) and Next.js monorepo with a streaming Claude client, CI and monitoring, along with its Claude Code core: 7 golden-path skills, 4 sub-agents, a custom MCP server and a live view of agent activity. The team grew it to 20 skills and built the product in 4 days, covering all 8 SDLC phases.",
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "TypeScript", "Tailwind", "shadcn/ui", "Claude API", "MCP", "Server-Sent Events", "LINE Messaging API", "Playwright", "Docker Compose", "GitLab CI", "Prometheus", "Grafana"]
     }
   ],
   "certificates": [
