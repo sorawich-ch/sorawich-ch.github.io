@@ -5,7 +5,7 @@
     "label": "Backend Software Engineer",
     "email": "sorawichchankhiew@gmail.com",
     "url": "https://sorawich-ch.github.io",
-    "summary": "Backend software engineer building production systems since 2018, now mainly in Go. At CJ MORE I build services for the POS back-office platform used by stores, distribution centers and head office, and lead three projects: a new asset-tracking service, the in-store print service used in about 1,500 branches, and the team's move to AI-assisted development. Before that I built fintech, healthcare and advertising products with Python, Node.js and React.",
+    "summary": "Backend software engineer building production systems since 2018, now mainly in Go (Golang) with MongoDB, Kafka and Kubernetes. At CJ MORE I work on the POS back-office platform used by stores, distribution centers and head office, and lead three projects: a new asset-tracking service, the in-store print service running in about 1,500 branches, and the team's adoption of AI-assisted development. I also build Go and Next.js products as a freelancer, and my team's AI-native project received the highest score at the CJ hackathon. Earlier I built fintech, healthcare and advertising products with Python, Node.js and React.",
     "location": {
       "city": "Bangkok",
       "countryCode": "TH"
@@ -20,6 +20,11 @@
         "network": "GitHub",
         "username": "sorawich-ch",
         "url": "https://github.com/sorawich-ch"
+      },
+      {
+        "network": "GitLab",
+        "username": "sorawichchankhiew",
+        "url": "https://gitlab.com/sorawichchankhiew"
       }
     ]
   },
@@ -29,14 +34,14 @@
       "description": "Backend Developer",
       "position": "POS Admin Back-office Platform",
       "startDate": "2023-08",
-      "summary": "The back-office platform that CJ MORE convenience stores, distribution centers and head office use for stock, campaigns, orders, purchasing, accounting, products and printing: about 21 Go microservices on Kafka, MongoDB and Kubernetes, built by a team of 9 developers, 9 QA engineers and 4 business analysts. 1,400+ commits across 29 repositories since 2023.",
+      "summary": "The platform stores, distribution centers and head office use for stock, campaigns, orders, purchasing, accounting, products and printing: about 21 Go microservices on Kafka, MongoDB and Kubernetes. Team of 9 developers, 9 QA engineers and 4 business analysts; 1,400+ commits across 29 repositories.",
       "highlights": [
-        "Delivered features across stock, campaigns, orders, purchasing, accounting and products, including multi-round stock recounts, stock transfers with upload validation, campaign transfer-out approvals and reports, SAP file integration over SFTP and a banking partner's mini-ATM API.",
-        "Built PDF and Excel reports with Thai fonts, Buddhist-era dates and amounts written out in Thai baht.",
+        "Introduced OpenTelemetry tracing across logs, MongoDB, outbound HTTP calls and Kafka outbox consumers, which join the producer's trace, and packaged it as a recipe for the other services.",
         "Added request and query timeouts to 40+ endpoints across 7 services so slow queries fail fast.",
-        "Introduced OpenTelemetry tracing: request context now reaches logs, MongoDB and outbound HTTP calls, and Kafka outbox consumers join the producer's trace. Packaged the setup as a recipe for the other services.",
-        "Planned the MongoDB Go driver v2 migration: grouped 21 services by risk and documented critical bugs in the shared library's upgrade branch (a transaction-context leak, a runtime panic and a cursor leak).",
-        "Rolled out shared-library upgrades to about 12 services at a time, brought several services' unit-test suites to green, added SonarQube and fixed the shared CI pipelines."
+        "Planned the MongoDB Go driver v2 migration: ranked 21 services by risk and found critical bugs in the shared library's upgrade branch (a transaction-context leak, a runtime panic and a cursor leak).",
+        "Rolled out shared-library upgrades to about 12 services at a time, brought several test suites to green, added SonarQube and fixed the shared CI pipelines.",
+        "Delivered features across the platform, including multi-round stock recounts, stock transfers, campaign transfer-out approvals, SAP file integration over SFTP and a banking partner's mini-ATM API.",
+        "Built PDF and Excel reports with Thai fonts, Buddhist-era dates and amounts written out in Thai baht."
       ]
     },
     {
@@ -49,7 +54,7 @@
         "Set up the project from scratch: Docker, GitLab CI/CD with security scans, database migrations and technical docs.",
         "Built a scheduled job that syncs IMEI data from Google BigQuery into MongoDB, then refactored it to run faster.",
         "Built the asset movement and state-history APIs with MongoDB transactions and structured error handling.",
-        "Kept lint at zero issues with unit tests, moved to the maintained gomock and MongoDB driver v2, and removed a hard-coded token from the build."
+        "Kept lint at zero issues with unit tests, upgraded to MongoDB driver v2 and removed a hard-coded token from the build."
       ]
     },
     {
@@ -57,12 +62,12 @@
       "description": "Backend Developer",
       "position": "In-store Print Service",
       "startDate": "2024-11",
-      "summary": "An ASP.NET Core service that runs on store PCs in every branch (about 1,500) and prints stickers, barcodes and QR labels for the POS web app. I lead the project and am its primary maintainer.",
+      "summary": "An ASP.NET Core service on the store PCs of every branch (about 1,500) that prints stickers, barcodes and QR labels for the POS web app. I lead the project and am its primary maintainer.",
       "highlights": [
-        "Built QR-tracking sticker, GS1 DataMatrix and order-shipment label APIs with lot numbers, expiry dates and Thai fonts.",
+        "Built label APIs for QR tracking, GS1 DataMatrix and order shipments, with lot numbers, expiry dates and Thai fonts.",
         "Fixed print jobs that reported success but printed nothing by checking the real printer-queue status, and added a health check.",
         "Added the project's first test suite (47 xUnit tests), label preview and print-queue resource cleanup.",
-        "Set the repo up for AI-assisted work: written rules for frozen contracts, an agent that reviews diffs before push, and a sticker-layout skill."
+        "Prepared the repo for AI-assisted work: rules for frozen contracts, a review agent that checks diffs before push and a sticker-layout skill."
       ]
     },
     {
@@ -72,11 +77,10 @@
       "startDate": "2026",
       "summary": "I lead the team's adoption of AI-assisted development.",
       "highlights": [
-        "Built and maintain a shared set of 18 Claude Code skills used by 7 teammates, covering unit tests, API specs from source code, QA test cases from a diff and a pre-QA self-review. The unit-test skill cuts the time to write unit tests by about 80%.",
-        "Ran AI training for the team.",
+        "Built and maintain 18 shared Claude Code skills used by 7 teammates, covering unit tests, API specs from source code, QA test cases from a diff and a pre-QA self-review. The unit-test skill cuts the time to write unit tests by about 80%.",
         "Built a team knowledge hub with separate lanes for developers, PM/BA and QA. Its generator catalogs 715 endpoints across 21 services with their permissions, so non-developers can explore the system without reading code.",
-        "Updated the PDF report code in 7 services using a shared report skill.",
-        "Gave knowledge sessions on bitmasks, worker pools and a new error-handling pattern."
+        "Ran AI training for the team, and gave knowledge sessions on bitmasks, worker pools and a new error-handling pattern.",
+        "Updated the PDF report code in 7 services using a shared report skill."
       ]
     },
     {
@@ -84,10 +88,10 @@
       "position": "Visa Funds Transfer",
       "startDate": "2023-02",
       "endDate": "2023-07",
-      "summary": "Extended an international money transfer service so customers can send money directly to a recipient's Visa credit card.",
+      "summary": "Let customers of an international money transfer service send money straight to a recipient's Visa card.",
       "highlights": [
-        "Built the client-facing API that connects the front end to the back-end transfer services.",
-        "Integrated the Visa API to process secure credit and debit card transfers reliably."
+        "Built the client-facing API between the front end and the transfer services.",
+        "Integrated the Visa API for secure, reliable credit and debit card transfers."
       ]
     },
     {
@@ -97,7 +101,7 @@
       "endDate": "2023-07",
       "highlights": [
         "Built proofs of concept to evaluate new technologies and recommended which ones to adopt.",
-        "Scoped new solutions and estimated the resources and timelines needed to deliver them.",
+        "Scoped new solutions and estimated the resources and timelines to deliver them.",
         "Passed the Odoo certification exams."
       ]
     },
@@ -106,10 +110,9 @@
       "position": "Industrial Gas Consumption Portal",
       "startDate": "2022-10",
       "endDate": "2022-11",
-      "summary": "A dashboard where a gas supplier and its customers track consumption from pipelines, tanks and gas generators. Staff sign in with Microsoft Azure, customers with email, and roles control what each user can see.",
+      "summary": "A dashboard where a gas supplier and its customers track consumption from pipelines, tanks and gas generators, with Microsoft Azure sign-in for staff and role-based access.",
       "highlights": [
-        "Built the APIs that power the dashboard.",
-        "Refactored and optimized the codebase for performance and maintainability."
+        "Built the APIs behind the dashboard, and refactored the codebase for performance and maintainability."
       ]
     },
     {
@@ -119,8 +122,7 @@
       "endDate": "2022-10",
       "summary": "A web and mobile platform for trading cryptocurrencies, integrated with the Coinbase exchange, Fireblocks wallets and a payment gateway.",
       "highlights": [
-        "Developed and debugged the core API and back-office features.",
-        "Improved the crypto data feeds, adding functionality and optimizing performance."
+        "Developed and debugged the core API and back-office features, and improved the functionality and performance of the crypto data feeds."
       ]
     },
     {
@@ -131,11 +133,9 @@
       "endDate": "2022-05",
       "summary": "A health platform with a mobile app, an admin dashboard and integrations with wearable devices.",
       "highlights": [
-        "Designed and built the backend services and APIs with Python, FastAPI and Docker.",
-        "Designed the PostgreSQL database.",
+        "Designed and built the backend services and APIs (Python, FastAPI, Docker) and the PostgreSQL database.",
         "Built the web admin dashboard in React and the Android and iOS app in React Native.",
-        "Integrated data from Garmin, Fitbit and Oura wearables and transformed it to fit the app's data model.",
-        "Used AWS S3 for file storage and Amazon Textract to extract text from documents.",
+        "Integrated data from Garmin, Fitbit and Oura wearables, and used AWS S3 for files and Amazon Textract to extract text from documents.",
         "Built proofs of concept for new features requested by the business."
       ]
     },
@@ -146,10 +146,8 @@
       "endDate": "2020-07",
       "summary": "Campaign management and deal management systems, the HotNow app and a game app.",
       "highlights": [
-        "Built and optimized responsive web applications, owning page styles, layouts and views for different devices and screen sizes, under the guidance of a senior engineer.",
-        "Developed back-end services with Python and SQL.",
-        "Deployed services with Docker and Kubernetes.",
-        "Worked with JavaScript, Elm, Python and SQL."
+        "Built and optimized responsive web applications in JavaScript and Elm, owning layouts and views for different screen sizes, under the guidance of a senior engineer.",
+        "Developed back-end services with Python and SQL, and deployed them with Docker and Kubernetes."
       ]
     },
     {
@@ -159,9 +157,8 @@
       "startDate": "2017",
       "endDate": "2017",
       "highlights": [
-        "Built an Arduino sensor that measures air quality and integrated it into a modified drone.",
-        "Built a Laravel web dashboard that displays the air-quality readings.",
-        "Designed the MySQL database and the backend APIs."
+        "Built an Arduino air-quality sensor and integrated it into a modified drone.",
+        "Built a Laravel dashboard for the readings, with a MySQL database and backend APIs."
       ]
     }
   ],
@@ -177,11 +174,11 @@
   "skills": [
     {
       "name": "Languages",
-      "keywords": ["Go", "Python", "C#", "JavaScript", "SQL", "Shell", "Elixir", "Elm"]
+      "keywords": ["Go (Golang)", "Python", "C#", "TypeScript", "JavaScript", "SQL", "Shell", "Elixir", "Elm"]
     },
     {
       "name": "Backend",
-      "keywords": ["Fiber", "Gin", "Uber Fx", "ASP.NET Core", "FastAPI", "Node.js", "Fastify", "Phoenix", "REST APIs"]
+      "keywords": ["Fiber", "Gin", "Echo", "Uber Fx", "ASP.NET Core", "FastAPI", "Node.js", "Fastify", "Phoenix", "REST APIs"]
     },
     {
       "name": "Data and messaging",
@@ -201,7 +198,7 @@
     },
     {
       "name": "Frontend and mobile",
-      "keywords": ["React", "React Native", "HTML", "CSS / SCSS", "Tailwind", "Bootstrap"]
+      "keywords": ["React", "Next.js", "React Native", "HTML", "CSS / SCSS", "Tailwind", "Bootstrap"]
     }
   ],
   "projects": [
@@ -212,23 +209,23 @@
       "startDate": "2026-07",
       "description": "An online store for Thai handwriting fonts, built end to end for a client. Customers try fonts in a live preview, pay by PromptPay QR and get their files by email once an admin approves the payment slip.",
       "highlights": [
-        "Built the Go (Echo) API on MongoDB and the Next.js storefront and admin, deployed on AWS with font files kept in a private S3 bucket.",
+        "Built the Go (Echo) API on MongoDB and the Next.js storefront and admin, deployed on AWS with font files in a private S3 bucket.",
         "Built a live font preview with adjustable size and side-by-side weights, lazy-loading font files so the catalog stays fast.",
-        "Automated delivery: approving an order sends a branded email with expiring per-file download links and a one-click ZIP of the whole order.",
+        "Automated delivery: approving an order sends a branded email with expiring per-file download links and a one-click ZIP of the order.",
         "Added a sales dashboard, bundle promotions and an affiliate program with paid membership tiers and commissions."
       ],
-      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "React", "TypeScript", "Tailwind", "AWS S3", "Docker"]
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "TypeScript", "Tailwind", "AWS S3", "Docker"]
     },
     {
       "name": "Scheduled Web Automation Service",
       "type": "Personal project",
       "startDate": "2026-06",
-      "description": "Scheduled browser automation that completes a recurring multi-step web-form workflow for several users on a third-party, SSO-protected web app with no public API. Running unattended in production since June 2026.",
+      "description": "Browser automation that completes a recurring multi-step web-form workflow for several users on a third-party, SSO-protected web app with no public API. Running unattended in production since June 2026.",
       "highlights": [
-        "All code written by Claude Code under a human-in-the-loop process I designed: a hook blocks edits until I approve the plan, every change passes a pytest and ruff gate and a reviewer sub-agent, and every bug fix ships with a regression test.",
+        "All code written by Claude Code under a human-in-the-loop process I designed: a hook blocks edits until I approve the plan, every change passes pytest, ruff and a reviewer sub-agent, and every bug fix ships with a regression test.",
         "Built recovery on typed errors (one re-login for an expired session, a fallback engine for a changed page) and a rule never to retry after the final submit, so a failure is flagged as unconfirmed instead of risking a duplicate record.",
         "Encrypted credentials and session cookies at rest, and protected the admin dashboard with CSRF tokens, rate limiting and a security test matrix covering every endpoint for every role.",
-        "Cut compute cost by about 87% (≈$24 to ≈$8 a month) by running EC2 only during the daily working windows, and wrote 180+ offline tests plus end-to-end tests in real Chromium against a local fake of the target app."
+        "Cut compute cost by about 87% (≈$24 to ≈$8 a month) by running EC2 only during working windows, and wrote 180+ offline tests plus end-to-end tests in real Chromium against a local fake of the target app."
       ],
       "keywords": ["Python", "Playwright", "FastAPI", "Pydantic", "Docker Compose", "Caddy", "AWS EC2", "EventBridge", "pytest", "Claude Code"]
     },
@@ -238,43 +235,23 @@
       "type": "Freelance project",
       "startDate": "2026-02",
       "endDate": "2026-05",
-      "description": "A loan management platform for financing Android and iOS phones: partners originate loans for customers, while owners and admins review them, track payments and manage collections. It serves 5 partners financing 100+ devices and THB 1M+ in loans a month. I built features end to end across the Go API and the Next.js web app (180 commits).",
+      "description": "A loan management platform for financing Android and iOS phones: partners originate loans, while owners and admins review them, track payments and manage collections. It serves 5 partners financing 100+ devices and THB 1M+ in loans a month. I built features end to end across the Go API and the Next.js web app (180 commits).",
       "highlights": [
         "Integrated Android device management so financed phones can be locked and unlocked remotely, with enrollment QR codes for partners, a scheduled job that refreshes them, and credit released only after a lock succeeds.",
         "Built automated LINE payment notifications: a scheduled job with a dry-run mode that sends LINE Flex messages for upcoming due dates, full payment and early settlement.",
         "Added early settlement, multi-slip payment review, claims and device returns to the loan lifecycle.",
         "Built organization onboarding, an investor dashboard, an IT support role and a vendor webhook integration."
       ],
-      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "React", "TypeScript", "AWS S3", "AWS CDK", "LINE Messaging API", "Android MDM"]
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "TypeScript", "AWS S3", "AWS CDK", "LINE Messaging API", "Android MDM"]
     },
     {
-      "name": "Web-based Game",
+      "name": "Web-based Game and Client Websites",
       "entity": "Opxerve Co., Ltd.",
       "highlights": [
-        "Designed and built backend services and APIs with Python, FastAPI and Docker.",
-        "Owned the affiliate microservices.",
-        "Worked with Kafka for messaging between services.",
-        "Load-tested the services with Locust and optimized their performance."
-      ]
-    },
-    {
-      "name": "MK Woodtech Web Application",
-      "description": "Built the MK Woodtech web application.",
-      "keywords": ["JavaScript", "React"]
-    },
-    {
-      "name": "GrabFood Merchant Website",
-      "description": "Built the static website for GrabFood merchants in Thailand.",
-      "keywords": ["Squarespace"]
-    },
-    {
-      "name": "Suitcube Online Tailor",
-      "description": "Built web applications for Suitcube's online tailoring service."
-    },
-    {
-      "name": "ERP Polymers Website",
-      "description": "Built the ERP Polymers company website.",
-      "keywords": ["Jekyll", "SCSS"]
+        "Web-based game: designed and built backend services and APIs with Python, FastAPI and Docker, owned the affiliate microservices, used Kafka for messaging between services, and load-tested with Locust to optimize performance.",
+        "Client websites: the MK Woodtech web app (React), the GrabFood merchant site for Thailand (Squarespace), Suitcube's online tailoring web apps and the ERP Polymers company website (Jekyll, SCSS)."
+      ],
+      "keywords": ["Python", "FastAPI", "Kafka", "Locust", "React", "Jekyll"]
     }
   ],
   "awards": [
@@ -282,7 +259,7 @@
       "title": "CJ AI-Native SDLC Hackathon: Highest Score (89/100)",
       "awarder": "CJ MORE",
       "date": "2026-06",
-      "summary": "Led AI and development for CJ AI Passport, built by our team in 4 days: an AI-native order-to-cash system (quotations, sales orders, delivery notes and tracking) where AI drafts orders and a person approves them. We built it with a Claude Code setup of 20 skills, 4 sub-agents and a custom MCP server, covering all 8 SDLC phases. It scored 89/100, the highest at the event."
+      "summary": "Led AI and development for CJ AI Passport, an AI-native order-to-cash system (quotations, sales orders, delivery notes and tracking) where AI drafts orders and a person approves them. Our team built it in 4 days with a Claude Code setup of 20 skills, 4 sub-agents and a custom MCP server, covering all 8 SDLC phases."
     }
   ],
   "certificates": [

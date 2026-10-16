@@ -22,21 +22,22 @@ const layoutCss = `<style>
 </style>`
 // The PDF uses block layout instead of the theme's grid, because Chrome does not
 // keep grid items whole across pages. Same look: narrow page margins, titles in a
-// left column, and bullets, projects and skill groups never split. Long roles may
-// break between bullets, since keeping them whole would leave big gaps.
+// left column, and bullets, headings and skill groups never split. Long roles and
+// projects may break between bullets, since keeping them whole would leave big gaps.
 const printCss = `<style>
 @media print{
   body{display:block}
   .masthead{display:block;padding:3em 24px}
   .masthead>*+*{margin-top:1.5em}
-  section{display:block;position:relative;margin:2em 24px 0;padding-left:calc(8.25rem + 1.5em)}
+  section{display:block;position:relative;margin:1.75em 24px 0;padding-left:calc(8.25rem + 1.5em)}
   section>h3{position:absolute;top:0;left:0;width:8.25rem}
   .stack{display:block}
   .stack>*+*{margin-top:1.5em}
   .grid-list{display:block}
-  .grid-list>div{display:inline-block;vertical-align:top;width:calc(50% - .75em);margin:0 .5em 1em 0}
-  li,article>header,.timeline>div>div:first-child,#education article,#projects article,#certificates article{break-inside:avoid}
+  .grid-list>div{display:inline-block;vertical-align:top;width:calc(50% - .75em);margin:0 .5em .75em 0}
+  li,article>header,.timeline>div>div:first-child,#education article,#certificates article,.tag-list{break-inside:avoid}
   h4,h5,article>header,.timeline>div>div:first-child{break-after:avoid}
+  .tag-list{break-before:avoid}
 }
 </style>`
 const html = fixDates(await render(resume, theme)).replace('</head>', `${layoutCss}${printCss}</head>`)
