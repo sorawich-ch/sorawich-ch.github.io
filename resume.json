@@ -233,6 +233,21 @@
       "keywords": ["Python", "Playwright", "FastAPI", "Pydantic", "Docker Compose", "Caddy", "AWS EC2", "EventBridge", "pytest", "Claude Code"]
     },
     {
+      "name": "Device Financing Loan Platform",
+      "roles": ["Full-stack developer"],
+      "type": "Freelance project",
+      "startDate": "2026-02",
+      "endDate": "2026-05",
+      "description": "A loan management platform for financing Android and iOS phones: partners originate loans for customers, while owners and admins review them, track payments and manage collections. It serves 5 partners financing 100+ devices and THB 1M+ in loans a month. I built features end to end across the Go API and the Next.js web app (180 commits).",
+      "highlights": [
+        "Integrated Android device management so financed phones can be locked and unlocked remotely, with enrollment QR codes for partners, a scheduled job that refreshes them, and credit released only after a lock succeeds.",
+        "Built automated LINE payment notifications: a scheduled job with a dry-run mode that sends LINE Flex messages for upcoming due dates, full payment and early settlement.",
+        "Added early settlement, multi-slip payment review, claims and device returns to the loan lifecycle.",
+        "Built organization onboarding, an investor dashboard, an IT support role and a vendor webhook integration."
+      ],
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "React", "TypeScript", "AWS S3", "AWS CDK", "LINE Messaging API", "Android MDM"]
+    },
+    {
       "name": "Web-based Game",
       "entity": "Opxerve Co., Ltd.",
       "highlights": [
