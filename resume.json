@@ -5,7 +5,7 @@
     "label": "Backend Software Engineer",
     "email": "sorawichchankhiew@gmail.com",
     "url": "https://sorawich-ch.github.io",
-    "summary": "Backend-focused software engineer building production systems since 2018. I design APIs, databases and third-party integrations for fintech, healthcare and advertising products, from Visa card transfers and a cryptocurrency brokerage to a health app that syncs data from wearable devices. I also work across the stack with React and React Native, and ship services with Docker and Kubernetes.",
+    "summary": "Backend software engineer building production systems since 2018, now mainly in Go. At CJ MORE I build services for the POS back-office platform used by stores, distribution centers and head office, and lead three projects: a new asset-tracking service, the in-store print service used in about 1,500 branches, and the team's move to AI-assisted development. Before that I built fintech, healthcare and advertising products with Python, Node.js and React.",
     "location": {
       "city": "Bangkok",
       "countryCode": "TH"
@@ -25,9 +25,66 @@
   },
   "work": [
     {
+      "name": "CJ MORE",
+      "description": "Backend Developer",
+      "position": "POS Admin Back-office Platform",
+      "startDate": "2023-08",
+      "summary": "The back-office platform that CJ MORE convenience stores, distribution centers and head office use for stock, campaigns, orders, purchasing, accounting, products and printing: about 21 Go microservices on Kafka, MongoDB and Kubernetes, built by a team of 9 developers, 9 QA engineers and 4 business analysts. 1,400+ commits across 29 repositories since 2023.",
+      "highlights": [
+        "Delivered features across stock, campaigns, orders, purchasing, accounting and products, including multi-round stock recounts, stock transfers with upload validation, campaign transfer-out approvals and reports, SAP file integration over SFTP and a banking partner's mini-ATM API.",
+        "Built PDF and Excel reports with Thai fonts, Buddhist-era dates and amounts written out in Thai baht.",
+        "Added request and query timeouts to 40+ endpoints across 7 services so slow queries fail fast.",
+        "Introduced OpenTelemetry tracing: request context now reaches logs, MongoDB and outbound HTTP calls, and Kafka outbox consumers join the producer's trace. Packaged the setup as a recipe for the other services.",
+        "Planned the MongoDB Go driver v2 migration: grouped 21 services by risk and documented critical bugs in the shared library's upgrade branch (a transaction-context leak, a runtime panic and a cursor leak).",
+        "Rolled out shared-library upgrades to about 12 services at a time, brought several services' unit-test suites to green, added SonarQube and fixed the shared CI pipelines."
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Backend Developer",
+      "position": "Asset Tracking Service",
+      "startDate": "2026-04",
+      "summary": "A new Go service that tracks POS hardware: devices, IMEIs and their movement between branches. I lead the project and built it from zero to production.",
+      "highlights": [
+        "Set up the project from scratch: Docker, GitLab CI/CD with security scans, database migrations and technical docs.",
+        "Built a scheduled job that syncs IMEI data from Google BigQuery into MongoDB, then refactored it to run faster.",
+        "Built the asset movement and state-history APIs with MongoDB transactions and structured error handling.",
+        "Kept lint at zero issues with unit tests, moved to the maintained gomock and MongoDB driver v2, and removed a hard-coded token from the build."
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Backend Developer",
+      "position": "In-store Print Service",
+      "startDate": "2024-11",
+      "summary": "An ASP.NET Core service that runs on store PCs in every branch (about 1,500) and prints stickers, barcodes and QR labels for the POS web app. I lead the project and am its primary maintainer.",
+      "highlights": [
+        "Built QR-tracking sticker, GS1 DataMatrix and order-shipment label APIs with lot numbers, expiry dates and Thai fonts.",
+        "Fixed print jobs that reported success but printed nothing by checking the real printer-queue status, and added a health check.",
+        "Added the project's first test suite (47 xUnit tests), label preview and print-queue resource cleanup.",
+        "Set the repo up for AI-assisted work: written rules for frozen contracts, an agent that reviews diffs before push, and a sticker-layout skill."
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Backend Developer",
+      "position": "AI-Assisted Development",
+      "startDate": "2026",
+      "summary": "I lead the team's adoption of AI-assisted development.",
+      "highlights": [
+        "Built and maintain a shared set of 18 Claude Code skills used by 7 teammates, covering unit tests, API specs from source code, QA test cases from a diff and a pre-QA self-review. The unit-test skill cuts the time to write unit tests by about 80%.",
+        "Ran AI training for the team.",
+        "Led AI and development for a CJ hackathon project on AI agents across the SDLC, which received the highest score at the event.",
+        "Built a team knowledge hub with separate lanes for developers, PM/BA and QA. Its generator catalogs 715 endpoints across 21 services with their permissions, so non-developers can explore the system without reading code.",
+        "Updated the PDF report code in 7 services using a shared report skill.",
+        "Gave knowledge sessions on bitmasks, worker pools and a new error-handling pattern."
+      ]
+    },
+    {
       "name": "MAQE Bangkok Co., Ltd.",
       "position": "Visa Funds Transfer",
       "startDate": "2023-02",
+      "endDate": "2023-07",
       "summary": "Extended an international money transfer service so customers can send money directly to a recipient's Visa credit card.",
       "highlights": [
         "Built the client-facing API that connects the front end to the back-end transfer services.",
@@ -38,6 +95,7 @@
       "name": "MAQE Bangkok Co., Ltd.",
       "position": "Internal R&D and Proofs of Concept",
       "startDate": "2022-09",
+      "endDate": "2023-07",
       "highlights": [
         "Built proofs of concept to evaluate new technologies and recommended which ones to adopt.",
         "Scoped new solutions and estimated the resources and timelines needed to deliver them.",
@@ -120,23 +178,31 @@
   "skills": [
     {
       "name": "Languages",
-      "keywords": ["Python", "JavaScript", "Elixir", "Elm", "SQL", "HTML", "CSS / SCSS"]
+      "keywords": ["Go", "Python", "C#", "JavaScript", "SQL", "Shell", "Elixir", "Elm"]
     },
     {
       "name": "Backend",
-      "keywords": ["FastAPI", "Node.js", "Fastify", "Phoenix", "REST APIs"]
+      "keywords": ["Fiber", "Gin", "Uber Fx", "ASP.NET Core", "FastAPI", "Node.js", "Fastify", "Phoenix", "REST APIs"]
+    },
+    {
+      "name": "Data and messaging",
+      "keywords": ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Google BigQuery", "Kafka", "Transactional outbox"]
+    },
+    {
+      "name": "Cloud and DevOps",
+      "keywords": ["Docker", "Kubernetes", "Helm", "Istio", "GitLab CI", "HashiCorp Vault", "GKE", "Huawei Cloud", "AWS", "Git", "Linux"]
+    },
+    {
+      "name": "Observability and quality",
+      "keywords": ["OpenTelemetry", "testify", "gomock", "xUnit", "golangci-lint", "SonarQube"]
+    },
+    {
+      "name": "AI tooling",
+      "keywords": ["Claude Code", "Agent skills", "Sub-agents", "MCP"]
     },
     {
       "name": "Frontend and mobile",
-      "keywords": ["React", "React Native", "Tailwind", "Bootstrap"]
-    },
-    {
-      "name": "Data",
-      "keywords": ["PostgreSQL", "MySQL", "Kafka"]
-    },
-    {
-      "name": "Infrastructure and tools",
-      "keywords": ["Docker", "Kubernetes", "AWS", "Git", "Linux", "macOS"]
+      "keywords": ["React", "React Native", "HTML", "CSS / SCSS", "Tailwind", "Bootstrap"]
     }
   ],
   "projects": [
@@ -157,19 +223,25 @@
     },
     {
       "name": "GrabFood Merchant Website",
-      "url": "https://grabmerchantth.com",
       "description": "Built the static website for GrabFood merchants in Thailand.",
       "keywords": ["Squarespace"]
     },
     {
       "name": "Suitcube Online Tailor",
-      "url": "https://onlinetailor.suitcube.com",
       "description": "Built web applications for Suitcube's online tailoring service."
     },
     {
       "name": "ERP Polymers Website",
       "description": "Built the ERP Polymers company website.",
       "keywords": ["Jekyll", "SCSS"]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Claude 101",
+      "issuer": "Anthropic Education",
+      "date": "2026-05-31",
+      "url": "https://verify.skilljar.com/c/z8d72293tdjk"
     }
   ],
   "languages": [
