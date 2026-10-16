@@ -1,9 +1,19 @@
 // Builds the site into site/: index.html, the PDF and resume.json.
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { pathToFileURL } from 'node:url'
 import { pdf, render } from 'resumed'
-import * as theme from 'jsonresume-theme-even'
 
 const OUT = 'site'
+
+// Show every employer the way the theme shows a company with several roles: the
+// company name as the heading and each role or project under it. Otherwise a lone
+// role's title is the heading and the company shrinks into the grey meta line.
+const themeSource = readFileSync('node_modules/jsonresume-theme-even/dist/index.js', 'utf8')
+const singleRoleLayout = 'const r = l.length === 1 ? l[0] : void 0;'
+if (!themeSource.includes(singleRoleLayout)) throw new Error('jsonresume-theme-even changed; update the work layout patch')
+mkdirSync('.theme', { recursive: true })
+writeFileSync('.theme/even.js', themeSource.replace(singleRoleLayout, 'const r = void 0;'))
+const theme = await import(pathToFileURL('.theme/even.js').href)
 
 const resume = JSON.parse(readFileSync('resume.json', 'utf8'))
 const pdfName = `${resume.basics.name.replace(/\s+/g, '-')}-CV.pdf`
@@ -19,6 +29,11 @@ const layoutCss = `<style>
   .masthead article{max-width:44em}
   h3{font-size:var(--scale2);text-align:left}
 }
+/* Each employer starts a clearly separate block under a divider. */
+#work .stack>article+article{border-top:1px solid var(--color-dimmed);padding-top:1.5em}
+#work article>header h4{font-size:var(--scale3)}
+/* With one role, the role line already shows the duration. */
+#work article:has(.timeline>div:only-child)>header time-duration{display:none}
 </style>`
 // The PDF uses block layout instead of the theme's grid, because Chrome does not
 // keep grid items whole across pages. Same look: narrow page margins, titles in a
@@ -38,6 +53,8 @@ const printCss = `<style>
   li,article>header,.timeline>div>div:first-child,#education article,#certificates article,.tag-list{break-inside:avoid}
   h4,h5,article>header,.timeline>div>div:first-child{break-after:avoid}
   .tag-list{break-before:avoid}
+  #work article>header h4{font-size:var(--scale2)}
+  #work .stack>article+article{padding-top:1em}
 }
 </style>`
 const html = fixDates(await render(resume, theme)).replace('</head>', `${layoutCss}${printCss}</head>`)
@@ -50,7 +67,8 @@ for (const icon of ['favicon.svg', 'apple-touch-icon.png']) copyFileSync(`assets
 if (process.env.SKIP_PDF) {
   console.log('Skipped PDF (SKIP_PDF is set)')
 } else {
-  const pdfRenderOptions = { format: 'A4', printBackground: true, margin: { top: '12mm', bottom: '12mm' } }
+  // A4 for Thailand; printBackground keeps the header band; 95% scale keeps it to 6 pages.
+  const pdfRenderOptions = { format: 'A4', printBackground: true, scale: 0.95, margin: { top: '12mm', bottom: '12mm' } }
   writeFileSync(`${OUT}/${pdfName}`, await pdf(html, resume, { ...theme, pdfRenderOptions }))
 }
 console.log(`Built ${OUT}/`)
