@@ -1,4 +1,5 @@
-// Builds the site into site/: index.html, the PDF and resume.json.
+// Builds the site into site/: the English resume at the root and the Thai one in
+// site/th/, each with its page, PDF and resume.json.
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import { pdf, render } from 'resumed'
@@ -14,9 +15,6 @@ if (!themeSource.includes(singleRoleLayout)) throw new Error('jsonresume-theme-e
 mkdirSync('.theme', { recursive: true })
 writeFileSync('.theme/even.js', themeSource.replace(singleRoleLayout, 'const r = void 0;'))
 const theme = await import(pathToFileURL('.theme/even.js').href)
-
-const resume = JSON.parse(readFileSync('resume.json', 'utf8'))
-const pdfName = `${resume.basics.name.replace(/\s+/g, '-')}-CV.pdf`
 
 // Two-column layout (wide screens and the PDF): the header spans both columns and
 // section titles sit left-aligned in a column just wide enough for "Certificates"
@@ -57,21 +55,41 @@ const printCss = `<style>
   #work .stack>article+article{padding-top:1em}
 }
 </style>`
-const html = addAwardKeywords(fixDates(await render(resume, theme))).replace('</head>', `${layoutCss}${printCss}</head>`)
+// The Thai page is for personal reading: keep it out of search results and stop
+// crawlers following its links (to its PDF and JSON). Lato has no Thai glyphs, so it
+// adds Noto Sans Thai for them (Latin text stays in Lato), with a little more line
+// height for Thai vowels and tone marks.
+const thaiCss = `<meta name="robots" content="noindex, nofollow"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap"><style>
+body{font-family:Lato,"Noto Sans Thai",sans-serif;line-height:1.6}
+h3{letter-spacing:normal!important}
+</style>`
 
-mkdirSync(OUT, { recursive: true })
-writeFileSync(`${OUT}/index.html`, addActions(html))
-copyFileSync('resume.json', `${OUT}/resume.json`)
-for (const icon of ['favicon.svg', 'apple-touch-icon.png']) copyFileSync(`assets/${icon}`, `${OUT}/${icon}`)
+// The two versions don't link to each other: the Thai one is for personal reading.
+await buildVersion({ file: 'resume.json', dir: OUT, pdfSuffix: '', thai: false, download: 'Download PDF' })
+await buildVersion({ file: 'resume.th.json', dir: `${OUT}/th`, pdfSuffix: '-TH', thai: true, download: 'ดาวน์โหลด PDF' })
 
-if (process.env.SKIP_PDF) {
-  console.log('Skipped PDF (SKIP_PDF is set)')
-} else {
-  // A4 for Thailand; printBackground keeps the header band; 95% scale keeps it to 6 pages.
-  const pdfRenderOptions = { format: 'A4', printBackground: true, scale: 0.95, margin: { top: '12mm', bottom: '12mm' } }
-  writeFileSync(`${OUT}/${pdfName}`, await pdf(html, resume, { ...theme, pdfRenderOptions }))
+async function buildVersion({ file, dir, pdfSuffix, thai, download }) {
+  const resume = JSON.parse(readFileSync(file, 'utf8'))
+  const pdfName = `${resume.basics.name.replace(/\s+/g, '-')}-CV${pdfSuffix}.pdf`
+
+  let html = addAwardKeywords(fixDates(await render(resume, theme)), resume.awards)
+  if (thai) html = toThai(html)
+  html = html.replace('</head>', `${layoutCss}${printCss}${thai ? thaiCss : ''}</head>`)
+
+  mkdirSync(dir, { recursive: true })
+  writeFileSync(`${dir}/index.html`, addActions(html, { pdfName, download }))
+  copyFileSync(file, `${dir}/resume.json`)
+  for (const icon of ['favicon.svg', 'apple-touch-icon.png']) copyFileSync(`assets/${icon}`, `${dir}/${icon}`)
+
+  if (process.env.SKIP_PDF) {
+    console.log(`Skipped PDF for ${dir} (SKIP_PDF is set)`)
+  } else {
+    // A4 for Thailand; printBackground keeps the header band; 95% scale keeps it short.
+    const pdfRenderOptions = { format: 'A4', printBackground: true, scale: 0.95, margin: { top: '12mm', bottom: '12mm' } }
+    writeFileSync(`${dir}/${pdfName}`, await pdf(html, resume, { ...theme, pdfRenderOptions }))
+  }
+  console.log(`Built ${dir}/`)
 }
-console.log(`Built ${OUT}/`)
 
 function fixDates(page) {
   return page
@@ -97,10 +115,38 @@ function fixDates(page) {
     })
 }
 
+// The theme's own labels, dates and durations are English; translate them for the
+// Thai page. Months use Thai names with Gregorian years, matching the content.
+function toThai(page) {
+  const headings = { Work: 'ประสบการณ์', Education: 'การศึกษา', Projects: 'โปรเจกต์', Awards: 'รางวัล', Certificates: 'ใบรับรอง', Skills: 'ทักษะ', Languages: 'ภาษา' }
+  const month = new Intl.DateTimeFormat('th-TH-u-ca-gregory', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+
+  page = mustReplace(page, '<html lang="en"', '<html lang="th"')
+  page = mustReplace(page, "${num === 1 ? str : str.concat('s')}", '${str}')
+  page = mustReplace(page, "pluralize(years, 'yr')", "pluralize(years, 'ปี')")
+  page = mustReplace(page, "pluralize(months, 'mo')", "pluralize(months, 'เดือน')")
+  page = mustReplace(page, "pluralize(days, 'day')", "pluralize(days, 'วัน')")
+  for (const [en, th] of Object.entries(headings)) page = page.replaceAll(`<h3>${en}</h3>`, `<h3>${th}</h3>`)
+
+  return page
+    .replaceAll('– Present', '– ปัจจุบัน')
+    .replaceAll('Awarded by <strong>', 'ได้รับจาก <strong>')
+    .replaceAll('Issued by <strong>', 'ออกโดย <strong>')
+    .replaceAll('at <strong>', 'ที่ <strong>')
+    .replace(/<section id="education">[\s\S]*?<\/section>/, (section) => section.replaceAll(' in <strong>', ' สาขา<strong>'))
+    .replace(/<time datetime="(\d{4}-\d{2})(-\d{2})?">[^<]*<\/time>/g, (tag, yearMonth, day = '') =>
+      `<time datetime="${yearMonth}${day}">${month.format(new Date(`${yearMonth}-01T00:00:00Z`))}</time>`)
+}
+
+function mustReplace(source, from, to) {
+  if (!source.includes(from)) throw new Error(`Thai page: theme output changed, "${from}" not found`)
+  return source.replace(from, () => to)
+}
+
 // The theme shows no tech tags on awards, so add an award's keywords (an extra
 // field in resume.json) as a tag list styled like the project tags.
-function addAwardKeywords(page) {
-  for (const { title, keywords } of resume.awards ?? []) {
+function addAwardKeywords(page, awards = []) {
+  for (const { title, keywords } of awards) {
     if (!keywords?.length) continue
     const start = page.indexOf(`<h4>${title}</h4>`)
     const end = page.indexOf('</article>', start)
@@ -119,8 +165,8 @@ function nextMonth(date) {
 }
 
 // Web-only download links under the contact list, plus screen layout tweaks.
-// Everything here is screen-only, so the PDF keeps the theme's print layout.
-function addActions(page) {
+// Everything here is screen-only, so the PDF keeps the print layout.
+function addActions(page, { pdfName, download }) {
   const icons = '<link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png">'
   const css = `${icons}<style>
 .actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
@@ -147,7 +193,7 @@ function addActions(page) {
   body{grid-template-columns:[full-start] minmax(1.5rem,1fr) [main-start side-start] 8.25rem [side-end content-start] minmax(0,46em) [main-end content-end] minmax(1.5rem,1fr) [full-end]}
 }
 </style>`
-  const actions = `<div class="actions"><a href="${pdfName}" download>Download PDF</a><a href="resume.json" target="_blank" rel="noopener">JSON Resume</a></div>`
+  const actions = `<div class="actions"><a href="${pdfName}" download>${download}</a><a href="resume.json" target="_blank" rel="noopener">JSON Resume</a></div>`
 
   const list = page.indexOf('<ul class="icon-list">')
   const listEnd = page.indexOf('</ul>', list)

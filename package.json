@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate": "resumed validate resume.json",
+    "validate": "resumed validate resume.json && resumed validate resume.th.json",
     "build": "node scripts/build.js",
     "preview": "SKIP_PDF=1 node scripts/build.js && open site/index.html"
   },

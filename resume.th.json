@@ -1,0 +1,299 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Sorawich Chankhiew",
+    "label": "วิศวกรซอฟต์แวร์ (Software Engineer)",
+    "email": "sorawichchankhiew@gmail.com",
+    "url": "https://sorawich-ch.github.io",
+    "summary": "วิศวกรซอฟต์แวร์ที่พัฒนาระบบ production มาตั้งแต่ปี 2018 ทั้งฝั่ง backend และ frontend โดยฝั่ง backend ใช้ Go (Golang), MongoDB, Kafka และ Kubernetes ส่วนฝั่ง frontend ใช้ React และ Next.js ปัจจุบันที่ CJ MORE พัฒนาแพลตฟอร์ม POS back-office ที่ร้านใช้ทำงานทุกอย่างนอกเหนือจากการขายหน้าเครื่อง POS เป็นผู้นำ 3 โปรเจกต์ (ระบบติดตามทรัพย์สินที่สร้างขึ้นใหม่, ระบบพิมพ์ฉลากหน้าร้านที่ใช้ในราว 1,500 สาขา และการนำ AI มาช่วยพัฒนาซอฟต์แวร์ในทีม) และเป็นพี่เลี้ยงให้ developer รุ่นน้อง นอกจากนี้ยังรับงาน freelance พัฒนาผลิตภัณฑ์ด้วย Go และ Next.js และนำทีมคว้าคะแนนสูงสุดจาก 15 ทีมในงาน CJ AI Hackathon ก่อนหน้านี้เคยพัฒนาผลิตภัณฑ์ด้าน fintech, healthcare และโฆษณาด้วย Python, Node.js และ React",
+    "location": {
+      "city": "กรุงเทพมหานคร",
+      "countryCode": "TH"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "sorawich-chankhiew",
+        "url": "https://www.linkedin.com/in/sorawich-chankhiew-bb8682179/"
+      },
+      {
+        "network": "GitHub",
+        "username": "sorawich-ch",
+        "url": "https://github.com/sorawich-ch"
+      },
+      {
+        "network": "GitLab",
+        "username": "sorawichchankhiew",
+        "url": "https://gitlab.com/sorawichchankhiew"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "CJ MORE",
+      "description": "Software Engineer (Backend Developer)",
+      "position": "แพลตฟอร์ม POS Admin (Back-office)",
+      "startDate": "2023-08",
+      "summary": "ระบบที่ร้านใช้ทำงานทุกอย่างนอกเหนือจากการขายหน้าเครื่อง POS ได้แก่ การรับสินค้า สต็อก การโอนย้ายและตรวจนับสินค้า การจัดซื้อ โปรโมชั่นและการลดราคา การนำฝากเงินสด ฉลาก และอุปกรณ์ โดยข้อมูลต้องตรงกับ SAP ซึ่งเป็นระบบบัญชีหลักของบริษัท ประกอบด้วย Go microservices ราว 21 ตัวบน Kafka, MongoDB และ Kubernetes ทีมมี developer 9 คน, QA 9 คน และ BA 4 คน มีผลงานกว่า 1,400 commits ใน 31 repositories",
+      "highlights": [
+        "นำ OpenTelemetry tracing มาใช้ครอบคลุม logs, MongoDB, การเรียก HTTP ภายนอก และ Kafka outbox consumers ซึ่งต่อ trace เดียวกับฝั่ง producer แล้วจัดทำเป็นแนวทางให้ services อื่นนำไปใช้ต่อ",
+        "เพิ่ม request timeout และ query timeout ให้กับกว่า 40 endpoints ใน 7 services เพื่อให้ query ที่ช้าถูกตัดจบอย่างรวดเร็ว",
+        "วางแผนการย้าย MongoDB Go driver ไปเป็น v2: จัดลำดับความเสี่ยงของ 21 services และพบบั๊กร้ายแรงใน branch อัปเกรดของ shared library (transaction-context leak, runtime panic และ cursor leak)",
+        "ทยอยอัปเกรด shared library ไปยัง services ครั้งละราว 12 ตัว ทำให้ชุด test ของหลาย services กลับมาผ่านทั้งหมด เพิ่ม SonarQube และแก้ CI pipeline กลางให้กลับมาทำงานได้",
+        "ผู้ commit มากที่สุดใน stock service (313 commits): การตรวจนับซ้ำหลายรอบและใบสรุปผลต่าง การอัปโหลดและส่งออกรายการโอนสินค้าระหว่างสาขากับศูนย์กระจายสินค้า และรายงานสต็อกสำหรับการเติมสินค้า",
+        "ส่งมอบฟีเจอร์ด้านโปรโมชั่นและสินค้าใกล้หมดอายุเพื่อลดของเสีย (การอนุมัติ transfer-out, การตรวจสินค้าหมดอายุ, การจำกัดยอดขายต่อสินค้า) ฟีเจอร์เงินสดหน้าร้าน (ใบนำฝากเงินสดรายวัน, การปลดล็อกและการตรวจสาขานำร่องของบริการ mini-ATM ร่วมกับธนาคารพันธมิตร) และการรับส่งไฟล์กับ SAP ผ่าน SFTP เพื่อให้ข้อมูลบัญชีตรงกัน",
+        "ออกแบบ API จัดการไฟล์ส่วนกลางสำหรับ Huawei Cloud OBS และสร้างเอกสาร PDF และ Excel ที่รองรับฟอนต์ไทย วันที่แบบพุทธศักราช และจำนวนเงินเป็นตัวอักษรภาษาไทย"
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Software Engineer (Backend Developer)",
+      "position": "ระบบติดตามทรัพย์สิน (Asset Tracking Service)",
+      "startDate": "2026-04",
+      "summary": "Go service ใหม่สำหรับติดตามฮาร์ดแวร์ POS ทั้งอุปกรณ์ หมายเลข IMEI และการเคลื่อนย้ายระหว่างศูนย์กระจายสินค้ากับสาขา เป็นผู้นำโปรเจกต์และพัฒนาตั้งแต่เริ่มต้นจนขึ้น production",
+      "highlights": [
+        "วางโครงสร้างโปรเจกต์ตั้งแต่ศูนย์: Docker, GitLab CI/CD พร้อม security scan, database migration, GitOps Helm values และเอกสาร โดยรันบน GKE ด้วย Workload Identity",
+        "สร้าง scheduled job ที่ sync ข้อมูล IMEI จาก Google BigQuery เข้า MongoDB แล้ว refactor ให้ทำงานเร็วขึ้น",
+        "สร้าง API สำหรับการเคลื่อนย้ายทรัพย์สินและประวัติสถานะ ด้วย MongoDB transactions และการจัดการ error แบบมีโครงสร้าง",
+        "รักษาจำนวนปัญหาจาก lint ให้เป็นศูนย์ด้วย unit test อัปเกรดเป็น MongoDB driver v2 และนำ token ที่ hard-code ไว้ออกจากขั้นตอน build"
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Software Engineer (Backend Developer)",
+      "position": "ระบบพิมพ์ฉลากหน้าร้าน (In-store Print Service)",
+      "startDate": "2024-11",
+      "summary": "ASP.NET Core service ที่ติดตั้งบนเครื่อง PC ของทุกสาขา (ราว 1,500 สาขา) สำหรับพิมพ์สติกเกอร์ราคา, QR, GS1 DataMatrix และฉลากจัดส่งให้กับ POS web app หากระบบนี้ล่ม ร้านจะติดฉลากสินค้าไม่ได้ เป็นผู้นำโปรเจกต์และผู้ดูแลหลัก",
+      "highlights": [
+        "สร้าง API ฉลากสำหรับ QR tracking, GS1 DataMatrix และการจัดส่งสินค้า พร้อม lot number วันหมดอายุ และฟอนต์ไทย",
+        "แก้ปัญหางานพิมพ์ที่รายงานว่าสำเร็จแต่ไม่มีอะไรพิมพ์ออกมา โดยตรวจสถานะจริงจาก printer queue และเพิ่ม health check",
+        "เพิ่มชุด test แรกของโปรเจกต์ (47 xUnit tests) การแสดงตัวอย่างฉลาก และการคืน resource ของ print queue",
+        "เตรียม repo ให้พร้อมพัฒนาด้วย AI: กฎสำหรับ contract ที่ห้ามเปลี่ยน, agent ที่รีวิว diff ก่อน push และ skill สำหรับจัด layout สติกเกอร์"
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Software Engineer (Backend Developer)",
+      "position": "การพัฒนาซอฟต์แวร์ด้วย AI (AI-Assisted Development)",
+      "startDate": "2026",
+      "summary": "เป็นผู้นำการนำ AI มาช่วยพัฒนาซอฟต์แวร์ในทีม และเป็นพี่เลี้ยงให้ developer รุ่นน้อง",
+      "highlights": [
+        "จัดอบรม AI มากกว่า 4 ครั้งให้ developer ทั้ง 9 คนในทีม ครอบคลุมการใช้ Claude Code การเขียน skill และ workflow การพัฒนาด้วย AI ปัจจุบันเพื่อนร่วมทีมใช้ shared skills ได้เองและเริ่มเขียน skill ของตัวเองแล้ว",
+        "สร้างและดูแล Claude Code skills ส่วนกลาง 18 ตัวที่เพื่อนร่วมทีม 7 คนใช้งาน ครอบคลุม unit test, API spec จาก source code, QA test case จาก diff, การ self-review ก่อนส่ง QA และการตรวจ idempotency ของ outbox โดย unit-test skill ช่วยลดเวลาเขียน unit test ได้ราว 80%",
+        "สร้าง knowledge hub ของทีมสำหรับ developer, BA/PM และ QA: ตัว generator รวบรวม 715 endpoints จาก 21 services พร้อมสิทธิ์การเข้าถึง มี hook ที่ตรวจพบเมื่อเอกสารความรู้เก่ากว่าโค้ด เพื่อให้ Claude ตรวจทานกับโค้ดก่อนตอบ และคำตอบแยกชัดระหว่าง spec กับสิ่งที่โค้ดทำจริง ทดลองใช้กับผู้ใช้ BA และ QA จริงในเดือนตุลาคม 2026",
+        "บรรยายแบ่งปันความรู้เรื่อง bitmask, worker pool, รูปแบบการจัดการ error แบบใหม่ และโปรเจกต์ hackathon"
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Software Engineer (Backend Developer)",
+      "position": "ระบบตรวจสอบความครบถ้วนของข้อมูล (Data Reconcile Service)",
+      "startDate": "2026-10",
+      "summary": "ช่วยให้ทีม data พิสูจน์ได้ว่าข้อมูล POS Admin ที่ส่งออกไปยัง BigQuery ผ่าน CDC, Kafka และ Pub/Sub มาถึงครบถ้วนและไม่ถูกแก้ไข",
+      "highlights": [
+        "เขียน logic หลักของการ reconcile: job รายชั่วโมงและรายวัน (เวลากรุงเทพฯ) บันทึกจำนวนเอกสารและ checksum ของ timestamp แยกตามสาขา collection และช่วงเวลา",
+        "เพิ่มแถวค่าศูนย์สำหรับสาขาที่ไม่มีข้อมูล เพื่อแยก \"ไม่มีข้อมูล\" ออกจาก \"ข้อมูลหาย\" และแก้บั๊กที่ขอบของช่วงเวลา"
+      ]
+    },
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "Visa Funds Transfer",
+      "startDate": "2023-02",
+      "endDate": "2023-07",
+      "summary": "ทำให้ลูกค้าของบริการโอนเงินระหว่างประเทศส่งเงินเข้าบัตร Visa ของผู้รับได้โดยตรง",
+      "highlights": [
+        "สร้าง client-facing API ที่เชื่อมระหว่าง front end กับ services การโอนเงิน",
+        "เชื่อมต่อ Visa API สำหรับการโอนเงินผ่านบัตรเครดิตและบัตรเดบิตอย่างปลอดภัยและเชื่อถือได้"
+      ]
+    },
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "งานวิจัยภายในและ Proof of Concept",
+      "startDate": "2022-09",
+      "endDate": "2023-07",
+      "highlights": [
+        "สร้าง proof of concept เพื่อประเมินเทคโนโลยีใหม่ และเสนอแนะว่าควรนำเทคโนโลยีใดมาใช้",
+        "กำหนดขอบเขตของโซลูชันใหม่ และประเมินทรัพยากรกับระยะเวลาที่ต้องใช้",
+        "สอบผ่านการรับรองของ Odoo"
+      ]
+    },
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "พอร์ทัลติดตามการใช้ก๊าซอุตสาหกรรม",
+      "startDate": "2022-10",
+      "endDate": "2022-11",
+      "summary": "Dashboard ที่ผู้จำหน่ายก๊าซและลูกค้าใช้ติดตามปริมาณการใช้จากท่อส่ง ถัง และเครื่องผลิตก๊าซ โดยพนักงานเข้าสู่ระบบด้วย Microsoft Azure และมีการกำหนดสิทธิ์ตามบทบาท",
+      "highlights": [
+        "สร้าง API ของ dashboard และ refactor โค้ดเพื่อประสิทธิภาพและความง่ายในการดูแลรักษา"
+      ]
+    },
+    {
+      "name": "MAQE Bangkok Co., Ltd.",
+      "position": "แพลตฟอร์มซื้อขายคริปโตเคอร์เรนซี",
+      "startDate": "2022-06",
+      "endDate": "2022-10",
+      "summary": "แพลตฟอร์มเว็บและมือถือสำหรับซื้อขายคริปโตเคอร์เรนซี เชื่อมต่อกับ Coinbase exchange, Fireblocks wallet และ payment gateway",
+      "highlights": [
+        "พัฒนาและ debug core API และฟีเจอร์ back-office รวมถึงปรับปรุงฟังก์ชันและประสิทธิภาพของ crypto data feed"
+      ]
+    },
+    {
+      "name": "Qualint",
+      "description": "Health tech",
+      "position": "แพลตฟอร์มสุขภาพ LyfeTrack",
+      "startDate": "2020-07",
+      "endDate": "2022-05",
+      "summary": "แพลตฟอร์มสุขภาพที่มีแอปมือถือ admin dashboard และการเชื่อมต่อกับอุปกรณ์ wearable",
+      "highlights": [
+        "ออกแบบและพัฒนา backend services และ API (Python, FastAPI, Docker) รวมถึงฐานข้อมูล PostgreSQL",
+        "พัฒนา web admin dashboard ด้วย React และแอป Android และ iOS ด้วย React Native",
+        "เชื่อมข้อมูลจาก wearable ของ Garmin, Fitbit และ Oura และใช้ AWS S3 เก็บไฟล์ และ Amazon Textract ดึงข้อความจากเอกสาร",
+        "สร้าง proof of concept สำหรับฟีเจอร์ใหม่ตามความต้องการของฝ่ายธุรกิจ"
+      ]
+    },
+    {
+      "name": "HotNow Co., Ltd.",
+      "position": "ระบบจัดการแคมเปญและดีล",
+      "startDate": "2018",
+      "endDate": "2020-07",
+      "summary": "ระบบจัดการแคมเปญและดีล แอป HotNow และแอปเกม",
+      "highlights": [
+        "พัฒนาและปรับปรุงเว็บแอปแบบ responsive ด้วย JavaScript และ Elm ดูแล layout และหน้าจอสำหรับหน้าจอหลายขนาด ภายใต้การแนะนำของ senior engineer",
+        "พัฒนา back-end services ด้วย Python และ SQL และ deploy ด้วย Docker และ Kubernetes"
+      ]
+    },
+    {
+      "name": "CAMT UAV and Autonomous Lab",
+      "description": "ห้องปฏิบัติการวิจัย",
+      "position": "โดรนตรวจวัดคุณภาพอากาศ",
+      "startDate": "2017",
+      "endDate": "2017",
+      "highlights": [
+        "สร้างเซนเซอร์วัดคุณภาพอากาศด้วย Arduino และติดตั้งเข้ากับโดรนที่ดัดแปลง",
+        "สร้าง dashboard ด้วย Laravel สำหรับแสดงค่าที่วัดได้ พร้อมฐานข้อมูล MySQL และ backend API"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "มหาวิทยาลัยเชียงใหม่",
+      "studyType": "วิทยาศาสตรบัณฑิต",
+      "area": "วิศวกรรมซอฟต์แวร์",
+      "startDate": "2014",
+      "endDate": "2017"
+    }
+  ],
+  "skills": [
+    {
+      "name": "ภาษาโปรแกรม",
+      "keywords": ["Go (Golang)", "Python", "C#", "TypeScript", "JavaScript", "SQL", "Shell", "Elixir", "Elm"]
+    },
+    {
+      "name": "Backend",
+      "keywords": ["Fiber", "Gin", "Echo", "Uber Fx", "ASP.NET Core", "FastAPI", "Node.js", "Fastify", "Phoenix", "REST APIs"]
+    },
+    {
+      "name": "Frontend",
+      "keywords": ["React", "Next.js", "HTML", "CSS / SCSS", "Tailwind", "shadcn/ui", "Bootstrap"]
+    },
+    {
+      "name": "ฐานข้อมูล",
+      "keywords": ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Google BigQuery"]
+    },
+    {
+      "name": "Messaging และการเชื่อมต่อระบบ",
+      "keywords": ["Kafka", "Transactional outbox", "Pub/Sub", "SAP SFTP integration", "LINE Messaging API", "Server-Sent Events"]
+    },
+    {
+      "name": "Cloud และ DevOps",
+      "keywords": ["Docker", "Kubernetes", "Helm", "Istio", "KEDA", "Kong", "HashiCorp Vault", "GitLab CI", "Huawei Cloud", "GCP (GKE)", "AWS", "Caddy", "Git", "Linux"]
+    },
+    {
+      "name": "Observability",
+      "keywords": ["OpenTelemetry", "Prometheus", "Grafana", "zap"]
+    },
+    {
+      "name": "การทดสอบและคุณภาพโค้ด",
+      "keywords": ["testify", "gomock", "xUnit", "pytest", "Playwright", "golangci-lint", "ruff", "SonarQube"]
+    },
+    {
+      "name": "เครื่องมือ AI",
+      "keywords": ["Claude Code", "Agent skills", "Sub-agents", "Hooks", "MCP"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "BanFontHub",
+      "url": "https://banfonthub.com",
+      "type": "โปรเจกต์ freelance ให้ลูกค้า",
+      "startDate": "2026-07",
+      "description": "ร้านขายฟอนต์ลายมือไทยออนไลน์ที่พัฒนาครบทั้งระบบให้ลูกค้า ผู้ซื้อทดลองพิมพ์ฟอนต์แบบ live preview ชำระเงินผ่าน PromptPay QR และได้รับไฟล์ทางอีเมลเมื่อแอดมินอนุมัติสลิป",
+      "highlights": [
+        "พัฒนา API ด้วย Go (Echo) บน MongoDB และหน้าร้านกับระบบแอดมินด้วย Next.js แล้ว deploy บน AWS โดยเก็บไฟล์ฟอนต์ไว้ใน private S3 bucket",
+        "สร้าง live preview ที่ปรับขนาดและเทียบน้ำหนักเส้นได้ พร้อม lazy-load ไฟล์ฟอนต์เพื่อให้หน้ารวมฟอนต์โหลดได้เร็ว",
+        "ส่งไฟล์อัตโนมัติ: เมื่ออนุมัติออเดอร์ ระบบจะส่งอีเมลแบรนด์พร้อมลิงก์ดาวน์โหลดรายไฟล์ที่มีวันหมดอายุ และไฟล์ ZIP รวมทั้งออเดอร์ในคลิกเดียว",
+        "เพิ่ม dashboard ยอดขาย โปรโมชั่นจัดชุด และระบบนายหน้าที่มีสมาชิกแบบเสียเงินหลายระดับพร้อมค่าคอมมิชชัน"
+      ],
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "TypeScript", "Tailwind", "AWS S3", "Docker"]
+    },
+    {
+      "name": "ระบบอัตโนมัติสำหรับเว็บฟอร์มตามกำหนดเวลา (Scheduled Web Automation Service)",
+      "type": "โปรเจกต์ส่วนตัว",
+      "startDate": "2026-06",
+      "description": "ระบบ browser automation ที่กรอกเว็บฟอร์มหลายขั้นตอนซึ่งต้องทำซ้ำเป็นประจำให้ผู้ใช้หลายคน บนเว็บแอปภายนอกที่ใช้ SSO และไม่มี public API ทำงานอัตโนมัติบน production มาตั้งแต่เดือนมิถุนายน 2026",
+      "highlights": [
+        "โค้ดทั้งหมดเขียนโดย Claude Code ภายใต้กระบวนการที่มีคนตรวจทุกขั้นซึ่งผมออกแบบเอง: hook บล็อกการแก้โค้ดจนกว่าผมจะอนุมัติแผน ทุกการเปลี่ยนแปลงต้องผ่าน pytest, ruff และ reviewer sub-agent และทุกการแก้บั๊กต้องมี regression test",
+        "สร้างกลไกกู้คืนจาก typed error (login ใหม่หนึ่งครั้งเมื่อ session หมดอายุ, สลับไปใช้ engine สำรองเมื่อหน้าเว็บเปลี่ยน) และกฎห้าม retry หลังกด submit ครั้งสุดท้าย เพื่อให้ความล้มเหลวถูกระบุว่า \"ยังไม่ยืนยัน\" แทนที่จะเสี่ยงสร้างข้อมูลซ้ำ",
+        "ย้าย production ไปยัง AWS region ในประเทศภายในคืนเดียว เมื่อระบบ sign-in ของเว็บปลายทางเริ่มปฏิเสธ region ต่างประเทศ: ทดสอบด้วย dry run ผู้ใช้คนเดียวก่อน ไม่เกิดข้อมูลซ้ำ และเขียน runbook สำหรับการย้าย region",
+        "เข้ารหัส credentials และ session cookies ขณะจัดเก็บ และป้องกัน admin dashboard ด้วย CSRF token, rate limiting และ security test matrix ที่ครอบคลุมทุก endpoint สำหรับทุก role",
+        "ลดค่า compute ได้ราว 87% (จาก ≈$24 เหลือ ≈$8 ต่อเดือน) โดยเปิด EC2 เฉพาะช่วงเวลาทำงาน และเขียน offline test กว่า 180 ตัว รวมถึง end-to-end test บน Chromium จริงกับเว็บจำลองของระบบปลายทางที่รันในเครื่อง"
+      ],
+      "keywords": ["Python", "Playwright", "FastAPI", "Pydantic", "Docker Compose", "Caddy", "AWS EC2", "EventBridge", "pytest", "Claude Code"]
+    },
+    {
+      "name": "แพลตฟอร์มสินเชื่อผ่อนมือถือ (Device Financing Loan Platform)",
+      "roles": ["Full-stack developer"],
+      "type": "โปรเจกต์ freelance",
+      "startDate": "2026-02",
+      "endDate": "2026-05",
+      "description": "แพลตฟอร์มบริหารสินเชื่อสำหรับผ่อนโทรศัพท์ Android และ iOS โดย partner เป็นผู้เปิดสินเชื่อให้ลูกค้า ส่วน owner และ admin ตรวจสอบสินเชื่อ ติดตามการชำระ และติดตามหนี้ ใช้งานโดย partner 5 ราย ปล่อยเครื่องกว่า 100 เครื่องและสินเชื่อมูลค่ากว่า 1 ล้านบาทต่อเดือน พัฒนาฟีเจอร์ครบทั้งฝั่ง Go API และ Next.js web app (180 commits)",
+      "highlights": [
+        "เชื่อมระบบ Android device management ให้ล็อกและปลดล็อกเครื่องที่ผ่อนได้จากระยะไกล พร้อม QR ลงทะเบียนสำหรับ partner, scheduled job ที่รีเฟรช QR และปล่อยเครดิตหลังล็อกเครื่องสำเร็จเท่านั้น",
+        "สร้างระบบแจ้งเตือนการชำระผ่าน LINE อัตโนมัติ: scheduled job ที่มีโหมด dry-run ส่ง LINE Flex message สำหรับงวดที่ใกล้ครบกำหนด การชำระครบ และการปิดยอดก่อนกำหนด",
+        "เพิ่มการปิดยอดก่อนกำหนด การตรวจสลิปหลายใบ การเคลม และการคืนเครื่องเข้าไปใน flow ของสินเชื่อ",
+        "สร้างระบบเพิ่มองค์กรใหม่ dashboard สำหรับนักลงทุน role IT support และการเชื่อม webhook กับ vendor"
+      ],
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "TypeScript", "AWS S3", "AWS CDK", "LINE Messaging API", "Android MDM"]
+    },
+    {
+      "name": "เว็บเกมและเว็บไซต์ลูกค้า (Web-based Game and Client Websites)",
+      "entity": "Opxerve Co., Ltd.",
+      "highlights": [
+        "เว็บเกม: ออกแบบและพัฒนา backend services และ API ด้วย Python, FastAPI และ Docker ดูแล affiliate microservices ใช้ Kafka รับส่งข้อความระหว่าง services และทำ load test ด้วย Locust เพื่อปรับประสิทธิภาพ",
+        "เว็บไซต์ลูกค้า: เว็บแอป MK Woodtech (React), เว็บไซต์ GrabFood merchant ประเทศไทย (Squarespace), เว็บแอปสั่งตัดชุดออนไลน์ของ Suitcube และเว็บไซต์บริษัท ERP Polymers (Jekyll, SCSS)"
+      ],
+      "keywords": ["Python", "FastAPI", "Kafka", "Locust", "React", "Jekyll"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "CJ AI Hackathon 2026: คะแนนสูงสุดจาก 15 ทีม (89/100)",
+      "awarder": "CJ MORE",
+      "date": "2026-06",
+      "summary": "CJ AI Passport ระบบ order-to-cash สำหรับทีมขาย B2B ของ CJ ซึ่ง Key Account Manager ดูแลลูกค้ากลุ่มโรงแรม ร้านอาหาร และคาเฟ่ และเดิมต้องพิมพ์ออเดอร์จาก LINE, Excel และอีเมลซ้ำลงในใบเสนอราคา ใบสั่งขาย และใบส่งของเอง โดยไม่มีระบบกลาง\n\n- เป็น team lead และ architect ของทีม developer 3 คน ภายใน 4 วัน\n- สร้าง AI-first starter ที่ทีมใช้พัฒนาต่อตั้งแต่ก่อนเริ่มงาน (Go และ Echo API, Next.js app, Claude client แบบ streaming, CI, monitoring, Claude Code sub-agents 4 ตัวและ golden-path skills) และหน้าจอแสดงการทำงานของ agent แบบ live\n- commit มากที่สุดในทีม (58 commits): ใบเสนอราคาพร้อม PDF และ flow การเซ็น, ใบสั่งขายที่ส่งออกเป็น CSV 42 คอลัมน์ตาม template ของ SAP, dashboard ติดตามสถานะ order-to-cash, การเสริมความปลอดภัย และ CI lanes สำหรับ coverage, end-to-end test และ security scan\n- แก้ AI hallucination ในการรับออเดอร์จาก LINE (AI ส่งชื่อสินค้ากลับมาแทนรหัสสินค้า) ด้วยการใส่ catalog สินค้าลงใน prompt พร้อมการค้นหาด้วยชื่อเป็นทางสำรองและ regression test ซึ่งกรรมการยกเป็นตัวอย่างการ debug AI ที่เป็นรูปธรรม\n- ตัวเลขของทีมที่กรรมการตรวจสอบแล้ว: 15 vertical slices, โค้ด Go และ TypeScript ราว 17.5k บรรทัด, test coverage ระดับ service 76.3%, skills 20 ตัว, sub-agents 4 ตัว, MCP server 6 tools และใช้ AI ครบทั้ง 8 ขั้นตอนของ SDLC",
+      "keywords": ["Go", "Echo", "MongoDB", "Next.js", "TypeScript", "Tailwind", "shadcn/ui", "Claude API", "MCP", "Server-Sent Events", "LINE Messaging API", "Playwright", "Docker Compose", "GitLab CI", "Prometheus", "Grafana"]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Claude 101",
+      "issuer": "Anthropic Education",
+      "date": "2026-05-31",
+      "url": "https://verify.skilljar.com/c/z8d72293tdjk"
+    }
+  ],
+  "languages": [
+    { "language": "ภาษาไทย" },
+    { "language": "ภาษาอังกฤษ" }
+  ]
+}
