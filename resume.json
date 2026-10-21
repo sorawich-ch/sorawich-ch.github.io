@@ -5,7 +5,7 @@
     "label": "Software Engineer",
     "email": "sorawichchankhiew@gmail.com",
     "url": "https://sorawich-ch.github.io",
-    "summary": "Software engineer building production systems since 2018, across backend and frontend: Go (Golang), MongoDB, Kafka and Kubernetes on the backend, and React and Next.js on the frontend. At CJ MORE I work on the POS back-office platform used by stores, distribution centers and head office, and lead three projects: a new asset-tracking service, the in-store print service running in about 1,500 branches, and the team's adoption of AI-assisted development. I also build Go and Next.js products as a freelancer, and my team's AI-native project received the highest score at the CJ hackathon. Earlier I built fintech, healthcare and advertising products with Python, Node.js and React.",
+    "summary": "Software engineer building production systems since 2018, across backend and frontend: Go (Golang), MongoDB, Kafka and Kubernetes on the backend, and React and Next.js on the frontend. At CJ MORE I build the POS back-office platform that runs everything in the stores beyond the till, lead three projects (a new asset-tracking service, the in-store print service in about 1,500 branches, and the team's adoption of AI-assisted development) and mentor junior developers. I also build Go and Next.js products as a freelancer, and led the team that took the highest score of 15 teams at the CJ AI hackathon. Earlier I built fintech, healthcare and advertising products with Python, Node.js and React.",
     "location": {
       "city": "Bangkok",
       "countryCode": "TH"
@@ -31,27 +31,28 @@
   "work": [
     {
       "name": "CJ MORE",
-      "description": "Backend Developer",
+      "description": "Software Engineer (Backend Developer)",
       "position": "POS Admin Back-office Platform",
       "startDate": "2023-08",
-      "summary": "The platform stores, distribution centers and head office use for stock, campaigns, orders, purchasing, accounting, products and printing: about 21 Go microservices on Kafka, MongoDB and Kubernetes. Team of 9 developers, 9 QA engineers and 4 business analysts; 1,400+ commits across 29 repositories.",
+      "summary": "Everything a store runs on beyond the till: receiving goods, stock, transfers and counts, purchasing, promotions and markdowns, cash deposits, labels and devices, kept in sync with SAP, the company's system of record. About 21 Go microservices on Kafka, MongoDB and Kubernetes; a team of 9 developers, 9 QA engineers and 4 business analysts; 1,400+ commits across 31 repositories.",
       "highlights": [
         "Introduced OpenTelemetry tracing across logs, MongoDB, outbound HTTP calls and Kafka outbox consumers, which join the producer's trace, and packaged it as a recipe for the other services.",
         "Added request and query timeouts to 40+ endpoints across 7 services so slow queries fail fast.",
         "Planned the MongoDB Go driver v2 migration: ranked 21 services by risk and found critical bugs in the shared library's upgrade branch (a transaction-context leak, a runtime panic and a cursor leak).",
         "Rolled out shared-library upgrades to about 12 services at a time, brought several test suites to green, added SonarQube and fixed the shared CI pipelines.",
-        "Delivered features across the platform, including multi-round stock recounts, stock transfers, campaign transfer-out approvals, SAP file integration over SFTP and a banking partner's mini-ATM API.",
-        "Built PDF and Excel reports with Thai fonts, Buddhist-era dates and amounts written out in Thai baht."
+        "Biggest contributor to the stock service (313 commits): multi-round stock recounts and difference sheets, stock-transfer upload and export between stores and distribution centers, and stock reports for replenishment.",
+        "Delivered promotion and expiry features to reduce waste (transfer-out approvals, expiry inspection, per-item sale limits), store cash features (pay-in slips for daily bank deposits, mini-ATM unlock and pilot checks with a banking partner) and SAP file integration over SFTP so the books match.",
+        "Designed the shared file-management API for Huawei Cloud OBS, and built PDF and Excel documents with Thai fonts, Buddhist-era dates and amounts in Thai baht."
       ]
     },
     {
       "name": "CJ MORE",
-      "description": "Backend Developer",
+      "description": "Software Engineer (Backend Developer)",
       "position": "Asset Tracking Service",
       "startDate": "2026-04",
-      "summary": "A new Go service that tracks POS hardware: devices, IMEIs and their movement between branches. I lead the project and built it from zero to production.",
+      "summary": "A new Go service that tracks POS hardware: devices, IMEIs and their movement between distribution centers and stores. I lead the project and built it from zero to production.",
       "highlights": [
-        "Set up the project from scratch: Docker, GitLab CI/CD with security scans, database migrations and technical docs.",
+        "Set up the project from scratch: Docker, GitLab CI/CD with security scans, database migrations, GitOps Helm values and docs, running on GKE with Workload Identity.",
         "Built a scheduled job that syncs IMEI data from Google BigQuery into MongoDB, then refactored it to run faster.",
         "Built the asset movement and state-history APIs with MongoDB transactions and structured error handling.",
         "Kept lint at zero issues with unit tests, upgraded to MongoDB driver v2 and removed a hard-coded token from the build."
@@ -59,10 +60,10 @@
     },
     {
       "name": "CJ MORE",
-      "description": "Backend Developer",
+      "description": "Software Engineer (Backend Developer)",
       "position": "In-store Print Service",
       "startDate": "2024-11",
-      "summary": "An ASP.NET Core service on the store PCs of every branch (about 1,500) that prints stickers, barcodes and QR labels for the POS web app. I lead the project and am its primary maintainer.",
+      "summary": "An ASP.NET Core service on the store PCs of every branch (about 1,500) that prints price, QR and GS1 DataMatrix stickers and shipment labels for the POS web app. If it fails, a store can't label goods. I lead the project and am its primary maintainer.",
       "highlights": [
         "Built label APIs for QR tracking, GS1 DataMatrix and order shipments, with lot numbers, expiry dates and Thai fonts.",
         "Fixed print jobs that reported success but printed nothing by checking the real printer-queue status, and added a health check.",
@@ -72,15 +73,26 @@
     },
     {
       "name": "CJ MORE",
-      "description": "Backend Developer",
+      "description": "Software Engineer (Backend Developer)",
       "position": "AI-Assisted Development",
       "startDate": "2026",
-      "summary": "I lead the team's adoption of AI-assisted development.",
+      "summary": "I lead the team's adoption of AI-assisted development and mentor junior developers.",
       "highlights": [
-        "Built and maintain 18 shared Claude Code skills used by 7 teammates, covering unit tests, API specs from source code, QA test cases from a diff and a pre-QA self-review. The unit-test skill cuts the time to write unit tests by about 80%.",
-        "Built a team knowledge hub with separate lanes for developers, PM/BA and QA. Its generator catalogs 715 endpoints across 21 services with their permissions, so non-developers can explore the system without reading code.",
-        "Ran AI training for the team, and gave knowledge sessions on bitmasks, worker pools and a new error-handling pattern.",
-        "Updated the PDF report code in 7 services using a shared report skill."
+        "Ran 4+ AI training sessions for all 9 developers on Claude Code, writing skills and the AI-assisted workflow. Teammates now use the shared skills on their own and have started writing their own.",
+        "Built and maintain 18 shared Claude Code skills used by 7 teammates, covering unit tests, API specs from source code, QA test cases from a diff, a pre-QA self-review and an outbox idempotency audit. The unit-test skill cuts the time to write unit tests by about 80%.",
+        "Built a team knowledge hub for developers, BA/PM and QA: a generator catalogs 715 endpoints across 21 services with their permissions, a hook flags knowledge that is older than the code so Claude re-checks before answering, and answers separate the spec from what the code does. Trialled it with BA and QA users in October 2026.",
+        "Gave knowledge sessions on bitmasks, worker pools, a new error-handling pattern and the hackathon project."
+      ]
+    },
+    {
+      "name": "CJ MORE",
+      "description": "Software Engineer (Backend Developer)",
+      "position": "Data Reconcile Service",
+      "startDate": "2026-10",
+      "summary": "Lets the data team prove that POS Admin data exported to BigQuery through CDC, Kafka and Pub/Sub arrived complete and unchanged.",
+      "highlights": [
+        "Wrote the core reconcile logic: hourly and daily jobs (Bangkok time) record a document count and a timestamp checksum per branch, collection and time window.",
+        "Added zero-value rows for branches with no data, so \"no data\" can be told apart from \"data lost\", and fixed window-boundary bugs."
       ]
     },
     {
@@ -181,24 +193,32 @@
       "keywords": ["Fiber", "Gin", "Echo", "Uber Fx", "ASP.NET Core", "FastAPI", "Node.js", "Fastify", "Phoenix", "REST APIs"]
     },
     {
-      "name": "Data and messaging",
-      "keywords": ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Google BigQuery", "Kafka", "Transactional outbox"]
+      "name": "Frontend",
+      "keywords": ["React", "Next.js", "HTML", "CSS / SCSS", "Tailwind", "shadcn/ui", "Bootstrap"]
+    },
+    {
+      "name": "Data",
+      "keywords": ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Google BigQuery"]
+    },
+    {
+      "name": "Messaging and integration",
+      "keywords": ["Kafka", "Transactional outbox", "Pub/Sub", "SAP SFTP integration", "LINE Messaging API", "Server-Sent Events"]
     },
     {
       "name": "Cloud and DevOps",
-      "keywords": ["Docker", "Kubernetes", "Helm", "Istio", "GitLab CI", "HashiCorp Vault", "GKE", "Huawei Cloud", "AWS", "Caddy", "Git", "Linux"]
+      "keywords": ["Docker", "Kubernetes", "Helm", "Istio", "KEDA", "Kong", "HashiCorp Vault", "GitLab CI", "Huawei Cloud", "GCP (GKE)", "AWS", "Caddy", "Git", "Linux"]
     },
     {
-      "name": "Observability and quality",
-      "keywords": ["OpenTelemetry", "testify", "gomock", "xUnit", "pytest", "Playwright", "golangci-lint", "ruff", "SonarQube"]
+      "name": "Observability",
+      "keywords": ["OpenTelemetry", "Prometheus", "Grafana", "zap"]
+    },
+    {
+      "name": "Testing and quality",
+      "keywords": ["testify", "gomock", "xUnit", "pytest", "Playwright", "golangci-lint", "ruff", "SonarQube"]
     },
     {
       "name": "AI tooling",
-      "keywords": ["Claude Code", "Agent skills", "Sub-agents", "MCP"]
-    },
-    {
-      "name": "Frontend",
-      "keywords": ["React", "Next.js", "HTML", "CSS / SCSS", "Tailwind", "Bootstrap"]
+      "keywords": ["Claude Code", "Agent skills", "Sub-agents", "Hooks", "MCP"]
     }
   ],
   "projects": [
@@ -224,6 +244,7 @@
       "highlights": [
         "All code written by Claude Code under a human-in-the-loop process I designed: a hook blocks edits until I approve the plan, every change passes pytest, ruff and a reviewer sub-agent, and every bug fix ships with a regression test.",
         "Built recovery on typed errors (one re-login for an expired session, a fallback engine for a changed page) and a rule never to retry after the final submit, so a failure is flagged as unconfirmed instead of risking a duplicate record.",
+        "Moved production to an in-country AWS region in one evening when the target's sign-in began rejecting the overseas region: validated it with a single-user dry run first, with no duplicate records, and wrote a region-move runbook.",
         "Encrypted credentials and session cookies at rest, and protected the admin dashboard with CSRF tokens, rate limiting and a security test matrix covering every endpoint for every role.",
         "Cut compute cost by about 87% (≈$24 to ≈$8 a month) by running EC2 only during working windows, and wrote 180+ offline tests plus end-to-end tests in real Chromium against a local fake of the target app."
       ],
@@ -256,10 +277,10 @@
   ],
   "awards": [
     {
-      "title": "CJ AI-Native SDLC Hackathon: Highest Score (89/100)",
+      "title": "CJ AI Hackathon 2026: Highest Score of 15 Teams (89/100)",
       "awarder": "CJ MORE",
       "date": "2026-06",
-      "summary": "Led AI and development for CJ AI Passport, an AI-native order-to-cash system (quotations, sales orders, delivery notes and tracking) where AI drafts orders and a person approves them. I built the team's AI-first starter, a Go (Echo) and Next.js monorepo with a streaming Claude client, CI and monitoring, along with its Claude Code core: 7 golden-path skills, 4 sub-agents, a custom MCP server and a live view of agent activity. The team grew it to 20 skills and built the product in 4 days, covering all 8 SDLC phases.",
+      "summary": "CJ AI Passport, an order-to-cash system for CJ's B2B sales team. Its key account managers serve hotel, restaurant and café customers, and used to re-type orders from LINE, Excel and email into quotations, sales orders and delivery notes with no central system.\n\n- Team lead and architect for a team of 3 developers over 4 days.\n- Built the AI-first starter the team developed on before the event (Go and Echo API, Next.js app, streaming Claude client, CI, monitoring, 4 Claude Code sub-agents and golden-path skills) and a live view of agent activity.\n- Wrote the most commits on the team (58): quotations with PDF and a sign flow, sales orders exported as a 42-column CSV matching the SAP template, an order-to-cash tracking dashboard, security hardening and CI lanes for coverage, end-to-end tests and security scans.\n- Fixed an AI hallucination in LINE order intake (product names returned instead of material codes) by injecting the catalog into the prompt with a name-search fallback and a regression test; the judges cited it as concrete AI-debugging impact.\n- Team totals, verified by the judges: 15 vertical slices, about 17.5k lines of Go and TypeScript, 76.3% service-layer test coverage, 20 skills, 4 sub-agents, a 6-tool MCP server and AI used in all 8 SDLC phases.",
       "keywords": ["Go", "Echo", "MongoDB", "Next.js", "TypeScript", "Tailwind", "shadcn/ui", "Claude API", "MCP", "Server-Sent Events", "LINE Messaging API", "Playwright", "Docker Compose", "GitLab CI", "Prometheus", "Grafana"]
     }
   ],
